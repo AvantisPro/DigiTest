@@ -12,8 +12,8 @@ public class Buy_flow {
 
     WebDriver driver;
 
-    String priceForDress = "€ 5 000";
-    String priceForDressWithDelivery = "€ 5 150";
+    String priceForDress = "5000";
+    String priceForDressWithDelivery = "5150";
 
 
     @BeforeClass
@@ -44,15 +44,18 @@ public class Buy_flow {
 
         //Add dress to cart
         String priceInCard = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/div/div[2]/div/div[2]/div[2]/div[3]/div/div[1]/p[2]")).getText();
+        priceInCard = priceInCard.replaceAll("[^0-9]","");
+
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/div/div[2]/div/div[2]/div[2]/div[3]/div/div[2]/div/div[2]/button")).click();
         driver.get("https://dev.digisposa.com/cart");
 
         Thread.sleep(1000);
         //Check price and make order
         String priceInCart = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[2]/div/div/div[3]/div/div[2]/div[2]")).getText();
+        priceInCart = priceInCart.replaceAll("[^0-9]","");
+
         //get order number
         String orderNumb = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div/div/table/tbody/tr[1]/td[2]")).getText();
-
         orderNumb = orderNumb.replaceAll("[^0-9]","");
 
         Assert.assertEquals(priceInCart, priceForDress);
@@ -138,6 +141,7 @@ public class Buy_flow {
 
         //Check price of dress
         String priceInCard = driver.findElement(By.xpath("//*[@id=\"orders\"]/div/div[2]/div/div/div/div[1]/div/div[1]/div/div/div[1]/p[3]/span[1]")).getText();
+        priceInCard = priceInCard.replaceAll("[^0-9]","");
         Assert.assertEquals(priceInCard, priceForDress);
 
 
@@ -198,6 +202,7 @@ public class Buy_flow {
 
         //check price for dress
         String priceInCardWithDelivery = driver.findElement(By.xpath("//*[@id=\"orders\"]/div/div[2]/div/div[1]/div/div/div/div[1]/p[3]/span[1]")).getText();
+        priceInCardWithDelivery = priceInCardWithDelivery.replaceAll("[^0-9]","");
         Assert.assertEquals(priceInCardWithDelivery, priceForDressWithDelivery);
 
         card1.click();
@@ -247,6 +252,7 @@ public class Buy_flow {
 
         //check price for dress
         String priceInCardWithDelivery = driver.findElement(By.xpath("//*[@id=\"invoices\"]/div/div[2]/div/div/div/div[1]/div[2]/div/div/div[1]/p[3]/span[1]")).getText();
+        priceInCardWithDelivery = priceInCardWithDelivery.replaceAll("[^0-9]","");
         Assert.assertEquals(priceInCardWithDelivery, priceForDressWithDelivery);
 
         WebElement To = driver.findElement(By.className("dropzone-caption"));
@@ -326,6 +332,7 @@ public class Buy_flow {
 
         //check price for dress
         String priceInCardWithDelivery = driver.findElement(By.xpath("//*[@id=\"invoices\"]/div/div[2]/div/div/div/div[1]/div/div/div/div[1]/p[4]/span[1]")).getText();
+        priceInCardWithDelivery = priceInCardWithDelivery.replaceAll("[^0-9]","");
         Assert.assertEquals(priceInCardWithDelivery, priceForDressWithDelivery);
 
         card.click();
