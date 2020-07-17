@@ -290,19 +290,6 @@ public class Brand {
         System.out.println(" ");
     }
 
-    @Test
-    public void Test11_clear_notic() throws InterruptedException {
-
-        System.out.println("===> TEST 11: clear_notic");
-
-        driver.get("https://dev.digisposa.com/dashboard");
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[1]/nav/ul[1]/li[3]/a")).click();
-        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[1]/nav/ul[1]/li[3]/div/a")).click();
-
-        System.out.println("===> TEST 11: PASSED");
-        System.out.println(" ");
-    }
 
     @AfterClass
     public void end(){

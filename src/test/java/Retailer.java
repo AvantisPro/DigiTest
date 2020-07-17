@@ -165,6 +165,7 @@ public class Retailer {
 
         //check new post
         driver.get("https://dev.digisposa.com/learning-center/awaiting");
+        Thread.sleep(3000);
         String title = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/table/tbody/tr/td[2]/a")).getText();
         Assert.assertEquals(title, "Autotest");
 
