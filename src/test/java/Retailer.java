@@ -78,12 +78,15 @@ public class Retailer {
         String name = driver.findElement(By.className("card-title")).getText();
         System.out.println(name);
         Assert.assertEquals(name, ("ARMANI CANADA, TORONTO"));
+
         System.out.println("===> TEST 04: PASSED");
         System.out.println(" ");
     }
 
     @Test
     public void Test05_add_brand_to_fav() throws InterruptedException {
+
+        System.out.println("===> TEST 05: add_brand_to_fav");
 
         //add brand to fav
         driver.get("https://dev.digisposa.com/brand/20");
@@ -100,10 +103,15 @@ public class Retailer {
         driver.get("https://dev.digisposa.com/brand/20");
         driver.findElement(By.className("my-icon-favoriteSolid")).click();
         driver.navigate().refresh();
+
+        System.out.println("===> TEST 05: PASSED");
+        System.out.println(" ");
     }
 
     @Test
     public void Test06_add_collection_to_fav() {
+
+        System.out.println("===> TEST 06: add_collection_to_fav");
 
         //Add collection to fav
         driver.get("https://dev.digisposa.com/brand/20/collection/210");
@@ -119,10 +127,15 @@ public class Retailer {
         driver.get("https://dev.digisposa.com/brand/20/collection/210");
         driver.findElement(By.className("my-icon-favoriteSolid")).click();
 
+        System.out.println("===> TEST 06: PASSED");
+        System.out.println(" ");
+
     }
 
     @Test
     public void Test07_add_dress_to_fav() {
+
+        System.out.println("===> TEST 07: add_dress_to_fav");
 
         //add dress to fav
         driver.get("https://dev.digisposa.com/brand/20/collection/210/item/214");
@@ -141,10 +154,15 @@ public class Retailer {
         driver.get("https://dev.digisposa.com/brand/20/collection/210/item/214");
         driver.findElement(By.className("my-icon-favoriteSolid")).click();
 
+        System.out.println("===> TEST 07: PASSED");
+        System.out.println(" ");
+
     }
 
     @Test
     public void Test08_create_post() throws InterruptedException {
+
+        System.out.println("===> TEST 08: create_post");
 
         driver.get("https://dev.digisposa.com/learning-center");
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[1]/div[2]/a")).click();
@@ -176,10 +194,15 @@ public class Retailer {
         //check
         String empty = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/table/tbody/tr/td/div")).getText();
         Assert.assertEquals(empty, "No items");
+
+        System.out.println("===> TEST 08: PASSED");
+        System.out.println(" ");
     }
 
     @Test
-    public void Test_check_newslatter() throws InterruptedException {
+    public void Test09_check_newslatter() throws InterruptedException {
+
+        System.out.println("===> TEST 09: check_newslatter");
 
         driver.get("https://dev.digisposa.com/message-center");
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[1]/div[2]/a[2]")).click();
@@ -189,6 +212,9 @@ public class Retailer {
         String test_text = driver.findElement(By.className("font-14")).getText();
 
         Assert.assertEquals(test_text, "Autotest_newslatter");
+
+        System.out.println("===> TEST 09: PASSED");
+        System.out.println(" ");
     }
 
 

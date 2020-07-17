@@ -27,6 +27,7 @@ public class Buy_flow {
     @Test
     public void Test01_login_as_Retailer_and_buy_dress() throws InterruptedException {
         System.out.println("===> Test01_login_as_Retailer_and_buy_dress");
+
         WebDriverWait wait = new WebDriverWait(driver, 10);
 
         //Login as Retailer H&M
