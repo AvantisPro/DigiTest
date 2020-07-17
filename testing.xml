@@ -5,7 +5,7 @@
         <classes>
             <class name="Brand"></class>
             <class name="Retailer"></class>
-<!--            <class name="Buy_flow"></class>-->
+            <class name="Buy_flow"></class>
         </classes>
     </test>
 </suite>
