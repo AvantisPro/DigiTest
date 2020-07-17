@@ -59,7 +59,7 @@ public class Brand {
     @Test
     public void Test03_createCollection() throws InterruptedException {
 
-        System.out.println("===> TEST 04: CREATE COLLECTION");
+        System.out.println("===> TEST 03: CREATE COLLECTION");
 
         WebDriverWait wait = new WebDriverWait(driver, 5);
 
@@ -99,7 +99,7 @@ public class Brand {
         driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
 
         driver.manage().window().maximize();
-        System.out.println("===> TEST 04: PASSED");
+        System.out.println("===> TEST 03: PASSED");
         System.out.println(" ");
 
     }
@@ -107,7 +107,7 @@ public class Brand {
     @Test
     public void Test04_search_retailer() throws InterruptedException {
 
-        System.out.println("===> TEST 05: CHECK SEARCH");
+        System.out.println("===> TEST 04: CHECK SEARCH");
         driver.manage().window().maximize();
         driver.get("https://dev.digisposa.com/search");
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div/div[1]/div/div/input")).sendKeys("sadoni");
@@ -122,7 +122,7 @@ public class Brand {
     @Test
     public void Test05_send_message() throws InterruptedException {
 
-        System.out.println("===> TEST 06: SEND MESSAGE");
+        System.out.println("===> TEST 05: SEND MESSAGE");
 
         driver.get("https://dev.digisposa.com/message-center");
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[1]/div[1]/div[1]/input")).sendKeys("Mike");
@@ -135,7 +135,7 @@ public class Brand {
         System.out.println(text);
         Assert.assertTrue(text.toLowerCase().contains("test"));
 
-        System.out.println("===> TEST 06: PASSED");
+        System.out.println("===> TEST 05: PASSED");
         System.out.println(" ");
     }
 
@@ -143,7 +143,7 @@ public class Brand {
     @Test
     public void Test06_check_preview_of_brand_page() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        System.out.println("===> TEST 08: check_preview_of_brand_page");
+        System.out.println("===> TEST 06: check_preview_of_brand_page");
 
         driver.get("https://dev.digisposa.com/brand-settings/profile");
         driver.findElement(By.id("title")).clear();
@@ -163,10 +163,15 @@ public class Brand {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", cancel);
         cancel.click();
 
+        System.out.println("===> TEST 06: PASSED");
+        System.out.println(" ");
+
     }
 
     @Test
     public void Test07_invite_retailer() throws InterruptedException {
+
+        System.out.println("===> TEST 07: invite_retailer");
 
         driver.get("https://dev.digisposa.com/dashboard");
         driver.get("https://dev.digisposa.com/retailer/invitations");
@@ -174,10 +179,15 @@ public class Brand {
         driver.findElement(By.id("company")).sendKeys("test");
         driver.findElement(By.id("comment")).sendKeys("loon_test@mailinator.com");
         driver.findElement(By.xpath("//*[@id=\"inviteModal___BV_modal_body_\"]/div/form/div[3]/div/div[1]")).click();
+
+        System.out.println("===> TEST 07: PASSED");
+        System.out.println(" ");
     }
 
     @Test
     public void Test08_create_post() throws InterruptedException {
+
+        System.out.println("===> TEST 08: create_post");
 
         driver.get("https://dev.digisposa.com/learning-center");
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[1]/div[2]/a")).click();
@@ -204,15 +214,21 @@ public class Brand {
         //delete post
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/table/tbody/tr/td[7]")).click();
         driver.navigate().refresh();
+        Thread.sleep(3000);
 
         //check
         String empty = driver.findElement(By.className("justify-content-center")).getText();
         Assert.assertEquals(empty, "No items");
 
+        System.out.println("===> TEST 08: PASSED");
+        System.out.println(" ");
+
     }
 
     @Test
-    public void Test08_dashboard_statistic() {
+    public void Test08_dashboard_statistic() throws InterruptedException {
+
+        System.out.println("===> TEST 09: dashboard_statistic");
 
         driver.get("https://dev.digisposa.com/brand-settings/dashboard");
 
@@ -229,6 +245,7 @@ public class Brand {
 
         //go to dashboard
         driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(3000);
 
         //get text of the block
         String bestDash = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/div/div/div/div[1]/div[1]")).getText();
@@ -246,10 +263,15 @@ public class Brand {
 
         //save
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/div/div/form/div/div[2]/button")).click();
+
+        System.out.println("===> TEST 09: PASSED");
+        System.out.println(" ");
     }
 
     @Test
-    public void Test_Newslatter() throws InterruptedException {
+    public void Test10_Newslatter() throws InterruptedException {
+
+        System.out.println("===> TEST 10: Newslatter test");
 
         driver.get("https://dev.digisposa.com/message-center");
         Thread.sleep(1000);
@@ -263,15 +285,23 @@ public class Brand {
         String test_text = driver.findElement(By.className("font-14")).getText();
 
         Assert.assertEquals(test_text, "Autotest_newslatter");
+
+        System.out.println("===> TEST 10: PASSED");
+        System.out.println(" ");
     }
 
     @Test
-    public void Test_clear_notic() throws InterruptedException {
+    public void Test11_clear_notic() throws InterruptedException {
+
+        System.out.println("===> TEST 11: clear_notic");
 
         driver.get("https://dev.digisposa.com/dashboard");
         Thread.sleep(3000);
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[1]/nav/ul[1]/li[3]/a")).click();
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[1]/nav/ul[1]/li[3]/div/a")).click();
+
+        System.out.println("===> TEST 11: PASSED");
+        System.out.println(" ");
     }
 
     @AfterClass

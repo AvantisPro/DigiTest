@@ -90,6 +90,7 @@ public class Buy_flow {
         driver.manage().window().setPosition(new Point(0, 0));
         driver.manage().window().setSize(new Dimension(414, 736));
         driver.navigate().refresh();
+        Thread.sleep(2000);
 
         driver.findElement(By.id("profile-dropdown")).click();
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
