@@ -290,6 +290,24 @@ public class Brand {
         System.out.println(" ");
     }
 
+    @Test
+    public void Test11_search_order_in_history() throws InterruptedException {
+
+        System.out.println("===> TEST 11: search_order_in_history");
+
+        driver.get("https://dev.digisposa.com/order#history");
+
+        driver.findElement(By.xpath("//*[@id=\"history\"]/div/div[1]/div/div[1]/div[1]/input")).sendKeys("272");
+        Thread.sleep(2000);
+
+        String OrderNumb = driver.findElement(By.xpath("//*[@id=\"history\"]/div/div[2]/div/div/div/div/div/div[1]/h4")).getText();
+
+        Assert.assertEquals(OrderNumb, "#0000000272");
+
+        System.out.println("===> TEST 11: PASSED");
+        System.out.println(" ");
+    }
+
 
     @AfterClass
     public void end(){
