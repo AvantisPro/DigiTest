@@ -18,7 +18,7 @@ public class Buy_flow {
 
     @BeforeClass
     public void init(){
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://dev.digisposa.com/auth/login");
