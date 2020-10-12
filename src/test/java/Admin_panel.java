@@ -16,7 +16,7 @@ public class Admin_panel {
 
     @BeforeClass
     public void init(){
-        System.setProperty("webdriver.chrome.driver", "home/www-root/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "usr/local/bin/chromedriver");
         driver = new ChromeDriver();
 
 //        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");

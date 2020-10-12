@@ -15,7 +15,7 @@ public class Brand {
     @BeforeClass
     public void init(){
         //System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_win.exe");
-        System.setProperty("webdriver.chrome.driver", "home/www-root/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "usr/local/bin/chromedriver");
         driver = new ChromeDriver();
 
 //        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
