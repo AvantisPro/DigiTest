@@ -16,7 +16,6 @@ public class Admin_panel {
 
     @BeforeClass
     public void init(){
-        //System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_win.exe");
         System.setProperty("webdriver.chrome.driver", "home/www-root/chromedriver");
         driver = new ChromeDriver();
 
