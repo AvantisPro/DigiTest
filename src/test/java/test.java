@@ -16,6 +16,8 @@ public class test {
         WebDriver driver = new RemoteWebDriver(serverurl,capabilities);
         driver.get("http://www.google.com");
         WebElement searchEdit = driver.findElement(By.name("q"));
+        String text = driver.findElement(By.name("q")).getText();
+        System.out.println(text);
         searchEdit.sendKeys("Selftechy on google");
         searchEdit.submit();
 
