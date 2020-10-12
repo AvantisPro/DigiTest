@@ -6,20 +6,25 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.annotations.Test;
 
 public class test {
+    WebDriver driver;
 
     public static void main(String []args) throws MalformedURLException{
         new DesiredCapabilities();
         URL serverurl = new URL("http://104.248.254.158:8081/");
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         WebDriver driver = new RemoteWebDriver(serverurl,capabilities);
+    }
+
+    @Test
+    public void test1() {
         driver.get("http://www.google.com");
         WebElement searchEdit = driver.findElement(By.name("q"));
         String text = driver.findElement(By.name("q")).getText();
         System.out.println(text);
         searchEdit.sendKeys("Selftechy on google");
         searchEdit.submit();
-
     }
 }
