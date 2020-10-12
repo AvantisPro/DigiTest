@@ -1,30 +1,44 @@
 import java.io.File;
 import java.io.IOException;
-import java.net.*;
 
-import org.openqa.selenium.*;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-public class test {
-    WebDriver driver;
+public class ChromeDriverTest {
+    private static ChromeDriverService service;
+    public static WebDriver driver;
 
-    public static void main(String []args) throws MalformedURLException{
-        new DesiredCapabilities();
-        URL serverurl = new URL("http://104.248.254.158:8081/");
-        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-        WebDriver driver = new RemoteWebDriver(serverurl,capabilities);
+    @BeforeClass
+    public static void createAndStartService() throws IOException {
+        service = new ChromeDriverService.Builder()
+                .usingDriverExecutable(new File("usr/local/bin/chromedriver"))
+                .usingAnyFreePort()
+                .build();
+        service.start();
+    }
+
+    @BeforeTest
+    public void setUp(){
+        driver = new ChromeDriver(service);
     }
 
     @Test
-    public void test1() {
-        driver.get("http://www.google.com");
-        WebElement searchEdit = driver.findElement(By.name("q"));
-        String text = driver.findElement(By.name("q")).getText();
+    public void simpleTest() {
+        driver.get("https://www.google.com/");
+        String text = driver.findElement(By.name("btnK")).getText();
         System.out.println(text);
-        searchEdit.sendKeys("Selftechy on google");
-        searchEdit.submit();
     }
-}
+
+    @AfterTest
+    public void tearDown(){
+        driver.quit();
+    }
+
+    @AfterClass
+    public static void createAndStopService() {
+        service.stop();
+    }
