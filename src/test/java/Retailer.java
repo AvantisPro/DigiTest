@@ -15,7 +15,8 @@ public class Retailer {
 
     @BeforeClass
     public void init(){
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        //System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_win.exe");
+        System.setProperty("webdriver.chrome.driver", "home/www-root/chromedriver");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://dev.digisposa.com/auth/login");
@@ -33,7 +34,7 @@ public class Retailer {
     @Test
     public void Test02_login(){
         System.out.println("===> TEST 02: CHECK LOGIN");
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+        WebDriverWait wait = new WebDriverWait(driver, 60);
 
         driver.findElement(By.id("loginform-email")).sendKeys("loon_test2@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
@@ -49,6 +50,7 @@ public class Retailer {
 
     @Test
     public void Test03_write_message() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 60);
 
         System.out.println("===> TEST 03: SEND MESSAGE");
 
@@ -57,7 +59,7 @@ public class Retailer {
 
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[2]/div[1]")).click();
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[2]/div/div[2]/div[2]/input")).sendKeys("test");
-        Thread.sleep(1000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fa-telegram-plane")));
         driver.findElement(By.className("fa-telegram-plane")).click();
         String text = driver.findElement(By.className("mc-message-text")).getAttribute("innerHTML");
         System.out.println(text);
@@ -69,12 +71,14 @@ public class Retailer {
 
     @Test
     public void Test04_search_check() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 60);
 
         System.out.println("===> TEST 04: CHECK SEARCH");
 
         driver.get("https://dev.digisposa.com/search");
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div/div[1]/div/div/input")).sendKeys("armani");
-        Thread.sleep(4000);
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("card-title")));
+        Thread.sleep(5000);
         String name = driver.findElement(By.className("card-title")).getText();
         System.out.println(name);
         Assert.assertEquals(name, ("ARMANI CANADA, TORONTO"));
@@ -85,17 +89,19 @@ public class Retailer {
 
     @Test
     public void Test05_add_brand_to_fav() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 60);
 
         System.out.println("===> TEST 05: add_brand_to_fav");
 
         //add brand to fav
         driver.get("https://dev.digisposa.com/brand/20");
-        Thread.sleep(1000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("my-icon-favorite")));
         driver.findElement(By.className("my-icon-favorite")).click();
 
         //check in fav
         driver.get("https://dev.digisposa.com/favorite");
 
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"brands\"]/div/div/div/div/a/span/span/span[2]/h4")));
         String favBrand = driver.findElement(By.xpath("//*[@id=\"brands\"]/div/div/div/div/a/span/span/span[2]/h4")).getText();
         Assert.assertEquals(favBrand, "VERSACE");
 
@@ -162,6 +168,8 @@ public class Retailer {
     @Test
     public void Test08_create_post() throws InterruptedException {
 
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
         System.out.println("===> TEST 08: create_post");
 
         driver.get("https://dev.digisposa.com/learning-center");
@@ -183,7 +191,7 @@ public class Retailer {
 
         //check new post
         driver.get("https://dev.digisposa.com/learning-center/awaiting");
-        Thread.sleep(3000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/table/tbody/tr/td[2]/a")));
         String title = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/table/tbody/tr/td[2]/a")).getText();
         Assert.assertEquals(title, "Autotest");
 
@@ -202,19 +210,47 @@ public class Retailer {
     @Test
     public void Test09_check_newslatter() throws InterruptedException {
 
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
         System.out.println("===> TEST 09: check_newslatter");
 
         driver.get("https://dev.digisposa.com/message-center");
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[1]/div[2]/a[2]")).click();
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[2]/div[3]")).click();
-        Thread.sleep(1000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[2]/div[1]/div[2]")));
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[2]/div[1]/div[2]")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("font-14")));
         String test_text = driver.findElement(By.className("font-14")).getText();
 
         Assert.assertEquals(test_text, "Autotest_newslatter");
 
         System.out.println("===> TEST 09: PASSED");
         System.out.println(" ");
+    }
+
+    @Test
+    public void Test10_search_product_on_brands_page() {
+
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
+        driver.get("https://dev.digisposa.com/brand/20");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[2]/div/input")));
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[2]/div/input")).sendKeys("UNO");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"collection\"]/div/div/div/div/div/div/h4")));
+        String dressName = driver.findElement(By.xpath("//*[@id=\"collection\"]/div/div/div/div/div/div/h4")).getText();
+        Assert.assertEquals(dressName,"UNO");
+    }
+
+    @Test
+    public void Test11_search_in_invoice_history() throws InterruptedException {
+
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
+        driver.get("https://dev.digisposa.com/order#history");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"history\"]/div/div[1]/div/div[1]/div[1]/input")));
+        driver.findElement(By.xpath("//*[@id=\"history\"]/div/div[1]/div/div[1]/div[1]/input")).sendKeys("0000000272");
+        Thread.sleep(5000);
+        String orderNumber = driver.findElement(By.xpath("//*[@id=\"history\"]/div/div[2]/div/div/div/div/div/div[1]/h4")).getText();
+        Assert.assertEquals(orderNumber,"#0000000272" );
     }
 
 

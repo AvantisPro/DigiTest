@@ -16,7 +16,8 @@ public class Admin_panel {
 
     @BeforeClass
     public void init(){
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        //System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_win.exe");
+        System.setProperty("webdriver.chrome.driver", "home/www-root/chromedriver");
         driver = new ChromeDriver();
 
 //        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
@@ -31,7 +32,7 @@ public class Admin_panel {
     public void Test01_send_request_as_brand() throws InterruptedException {
 
         System.out.println("===> TEST 01: send_request_as_brand");
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+        WebDriverWait wait = new WebDriverWait(driver, 60);
 
         driver.get("https://dev.digisposa.com/signup");
 
@@ -61,7 +62,7 @@ public class Admin_panel {
 
         System.out.println("===> TEST 01: send_request_as_retailer");
 
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+        WebDriverWait wait = new WebDriverWait(driver, 60);
 
         driver.get("https://dev.digisposa.com/signup");
 
@@ -92,7 +93,7 @@ public class Admin_panel {
 
         System.out.println("===> TEST 03: login_as_admin_and_reject_brands_request");
 
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+        WebDriverWait wait = new WebDriverWait(driver, 60);
 
         driver.get("https://dev.digisposa.com/auth/login");
 

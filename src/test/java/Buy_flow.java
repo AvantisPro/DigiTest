@@ -18,7 +18,8 @@ public class Buy_flow {
 
     @BeforeClass
     public void init(){
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        //System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_win.exe");
+        System.setProperty("webdriver.chrome.driver", "home/www-root/chromedriver");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://dev.digisposa.com/auth/login");
@@ -28,7 +29,7 @@ public class Buy_flow {
     public void Test01_login_as_Retailer_and_buy_dress() throws InterruptedException {
         System.out.println("===> Test01_login_as_Retailer_and_buy_dress");
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 60);
 
         //Login as Retailer H&M
         driver.findElement(By.id("loginform-email")).sendKeys("loon_test2@mailinator.com");
@@ -49,7 +50,7 @@ public class Buy_flow {
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/div/div[2]/div/div[2]/div[2]/div[3]/div/div[2]/div/div[2]/button")).click();
         driver.get("https://dev.digisposa.com/cart");
 
-        Thread.sleep(1000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[2]/div/div/div[3]/div/div[2]/div[2]")));
         //Check price and make order
         String priceInCart = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[2]/div/div/div[3]/div/div[2]/div[2]")).getText();
         priceInCart = priceInCart.replaceAll("[^0-9]","");
@@ -64,11 +65,11 @@ public class Buy_flow {
 
 
         driver.findElement(By.id("delivery_date")).click();
-        driver.findElement(By.id("__BVID__29__cell-2020-07-31_")).click();
+        driver.findElement(By.id("__BVID__29__cell-2020-10-31_")).click();
         driver.findElement(By.id("delivery_date")).click();
 
         driver.findElement(By.className("w-100")).click();
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         driver.navigate().refresh();
 
         String placetext = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div/h3"))).getText();
@@ -78,7 +79,7 @@ public class Buy_flow {
         //Go to order management and check order number and price
         driver.get("https://dev.digisposa.com/order");
 
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("card-title")));
         String lastOrdNum = driver.findElement(By.className("card-title")).getText();
 
 
@@ -94,7 +95,7 @@ public class Buy_flow {
         driver.manage().window().setPosition(new Point(0, 0));
         driver.manage().window().setSize(new Dimension(414, 736));
         driver.navigate().refresh();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
@@ -112,7 +113,7 @@ public class Buy_flow {
 
         System.out.println("===> Test02_login_as_Brand_and_accept_order");
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 60);
 
         //Login as Brand "Rock"
         driver.get("https://dev.digisposa.com/auth/login");
@@ -134,7 +135,7 @@ public class Buy_flow {
         driver.manage().window().setPosition(new Point(0, 0));
         driver.manage().window().setSize(new Dimension(414, 736));
         driver.navigate().refresh();
-        Thread.sleep(3000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("card-img-top")));
 
         WebElement card = driver.findElement(By.className("card-img-top"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", card);
@@ -145,7 +146,9 @@ public class Buy_flow {
         Assert.assertEquals(priceInCard, priceForDress);
 
 
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("card-img-top")));
         card.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("action-confirm-order")));
         driver.findElement(By.className("action-confirm-order")).click();
 
         driver.findElement(By.id("delivery_company")).sendKeys("test");
@@ -163,7 +166,7 @@ public class Buy_flow {
 
         driver.findElement(By.id("profile-dropdown")).click();
         driver.findElement(By.className("text-center")).click();
-        Thread.sleep(3000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("section__title")));
         String loginText = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
@@ -177,7 +180,7 @@ public class Buy_flow {
 
         System.out.println("===> Test03_login_as_Retailer_and_accept_order");
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 60);
 
         //enter as Margot
 
@@ -195,7 +198,7 @@ public class Buy_flow {
         driver.manage().window().setPosition(new Point(0, 0));
         driver.manage().window().setSize(new Dimension(414, 736));
         driver.navigate().refresh();
-        Thread.sleep(3000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("card-img-top")));
 
         WebElement card1 = driver.findElement(By.className("card-img-top"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", card1);
@@ -206,6 +209,7 @@ public class Buy_flow {
         Assert.assertEquals(priceInCardWithDelivery, priceForDressWithDelivery);
 
         card1.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("action-accept")));
         driver.findElement(By.className("action-accept")).click();
         Thread.sleep(3000);
 
@@ -214,7 +218,7 @@ public class Buy_flow {
 
         driver.findElement(By.id("profile-dropdown")).click();
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-        Thread.sleep(3000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("section__title")));
         String loginText = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
@@ -228,7 +232,7 @@ public class Buy_flow {
 
         System.out.println("===> Test04_login_as_Brand_and_create_invoice");
 
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebDriverWait wait = new WebDriverWait(driver, 60);
 
         //enter
         driver.get("https://dev.digisposa.com/auth/login");
@@ -241,20 +245,25 @@ public class Buy_flow {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
 
         driver.get("https://dev.digisposa.com/finances");
-        Thread.sleep(3000);
+        Thread.sleep(5000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("create-new-btn")));
 
 //        driver.manage().window().setPosition(new Point(0, 0));
 //        driver.manage().window().setSize(new Dimension(414, 736));
 //        driver.navigate().refresh();
 
         driver.findElement(By.className("create-new-btn")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("dropzone-caption")));
+        driver.findElement(By.className("dropzone-caption"));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("card-img-top")));
         WebElement lastCard = driver.findElement(By.className("card-img-top"));
 
         //check price for dress
-        String priceInCardWithDelivery = driver.findElement(By.xpath("//*[@id=\"invoices\"]/div/div[2]/div/div/div/div[1]/div[2]/div/div/div[1]/p[3]/span[1]")).getText();
+        String priceInCardWithDelivery = driver.findElement(By.xpath("//*[@id=\"invoices\"]/div/div[2]/div/div[1]/div/div/div/div/div[1]/div[1]/p[3]/span[1]")).getText();
         priceInCardWithDelivery = priceInCardWithDelivery.replaceAll("[^0-9]","");
         Assert.assertEquals(priceInCardWithDelivery, priceForDressWithDelivery);
 
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("dropzone-caption")));
         WebElement To = driver.findElement(By.className("dropzone-caption"));
 
         final String java_script =
@@ -269,20 +278,19 @@ public class Buy_flow {
                         "'drop',tgt);emit('dragend',src);";
 
         ((JavascriptExecutor)driver).executeScript(java_script, lastCard, To);
-        Thread.sleep(2000);
 
         List<WebElement> btns = driver.findElements(By.className("styled-btn"));
         WebElement rightBtn = btns.get(btns.size() - 1);
         rightBtn.click();
 
         driver.findElement(By.className("col-sm-8")).click();
-        Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("form-group")));
         List<WebElement> rb = driver.findElements(By.className("form-group"));
         WebElement rb1 = rb.get(1);
         rb1.click();
 
         driver.findElement(By.className("col-sm-7")).click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         driver.get("https://dev.digisposa.com/dashboard");
         driver.navigate().refresh();
 
@@ -335,9 +343,11 @@ public class Buy_flow {
         priceInCardWithDelivery = priceInCardWithDelivery.replaceAll("[^0-9]","");
         Assert.assertEquals(priceInCardWithDelivery, priceForDressWithDelivery);
 
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("card-img-top")));
         card.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("action-pay")));
         driver.findElement(By.className("action-pay")).click();
-        Thread.sleep(2000);
+        Thread.sleep(5000);
 
         //logout
         driver.get("https://dev.digisposa.com/dashboard");
