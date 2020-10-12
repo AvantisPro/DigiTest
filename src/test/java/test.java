@@ -26,10 +26,10 @@ public class test {
         service.start();
     }
 
-    @BeforeTest
-    public void setUp() {
-        driver = new ChromeDriver(service);
-    }
+//    @BeforeTest
+//    public void setUp() {
+//        driver = new ChromeDriver(service);
+//    }
 
     @Test
     public void simpleTest() {
