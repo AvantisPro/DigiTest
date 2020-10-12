@@ -1,11 +1,17 @@
+import com.google.common.collect.ImmutableMap;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -13,10 +19,26 @@ public class Brand {
     WebDriver driver;
 
     @BeforeClass
-    public void init(){
+    public void init() throws IOException {
+
+        // set the chromedriver path
+        ChromeDriverService service = new ChromeDriverService.Builder()
+                .usingDriverExecutable(new File("/usr/local/bin/chromedriver"))// set the chromedriver path
+                .usingAnyFreePort()
+                .withEnvironment(ImmutableMap.of("DISPLAY", ":15"))
+                .withSilent(true)
+                .build();
+        service.start();
+
+        System.out.println("Reading chrome driver");
+        System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        WebDriver driver = new ChromeDriver(chromeOptions);
+
         //System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_win.exe");
-        System.setProperty("webdriver.chrome.driver", "usr/local/bin/chromedriver");
-        driver = new ChromeDriver();
+//        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
+//        driver = new ChromeDriver();
 
 //        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
 //        driver = new FirefoxDriver();
