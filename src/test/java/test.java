@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.testng.annotations.*;
 
-public class ChromeDriverTest {
+public class test {
     private static ChromeDriverService service;
     public static WebDriver driver;
 
@@ -22,7 +22,7 @@ public class ChromeDriverTest {
     }
 
     @BeforeTest
-    public void setUp(){
+    public void setUp() {
         driver = new ChromeDriver(service);
     }
 
@@ -34,7 +34,7 @@ public class ChromeDriverTest {
     }
 
     @AfterTest
-    public void tearDown(){
+    public void tearDown() {
         driver.quit();
     }
 
@@ -42,3 +42,4 @@ public class ChromeDriverTest {
     public static void createAndStopService() {
         service.stop();
     }
+}
