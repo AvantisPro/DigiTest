@@ -23,7 +23,7 @@ public class Brand {
 
         // set the chromedriver path
         ChromeDriverService service = new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File("/usr/local/bin/chromedriver"))// set the chromedriver path
+                .usingDriverExecutable(new File("home/www-root/chromedriver"))// set the chromedriver path
                 .usingAnyFreePort()
                 .withEnvironment(ImmutableMap.of("DISPLAY", ":15"))
                 .withSilent(true)

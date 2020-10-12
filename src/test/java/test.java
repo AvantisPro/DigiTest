@@ -20,7 +20,7 @@ public class test {
     @BeforeClass
     public static void createAndStartService() throws IOException {
         service = new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File("usr/local/bin/chromedriver"))
+                .usingDriverExecutable(new File("home/www-root/chromedriver"))
                 .usingAnyFreePort()
                 .build();
         service.start();
