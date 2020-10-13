@@ -27,7 +27,7 @@ public class test {
 //        service.start();
 //    }
     public void Init() {
-        String chromeDriverPath = "/usr/local/bin/chromedriver";
+        String chromeDriverPath = "/home/www-root/chromedriver";
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
         driver = new ChromeDriver();
     }
