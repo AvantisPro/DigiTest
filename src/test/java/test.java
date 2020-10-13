@@ -14,16 +14,22 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class test {
-    private static ChromeDriverService service;
-    public static WebDriver driver;
+//    private static ChromeDriverService service;
+      WebDriver driver;
+
 
     @BeforeClass
-    public static void createAndStartService() throws IOException {
-        service = new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File("home/www-root/chromedriver"))
-                .usingAnyFreePort()
-                .build();
-        service.start();
+//    public static void createAndStartService() throws IOException {
+//        service = new ChromeDriverService.Builder()
+//                .usingDriverExecutable(new File("home/www-root/chromedriver"))
+//                .usingAnyFreePort()
+//                .build();
+//        service.start();
+//    }
+    public void Init() {
+        String chromeDriverPath = "/usr/local/bin/chromedriver";
+        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+        driver = new ChromeDriver();
     }
 
 //    @BeforeTest
