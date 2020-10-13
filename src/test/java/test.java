@@ -49,8 +49,8 @@ public class test {
         driver.quit();
     }
 
-    @AfterClass
-    public static void createAndStopService() {
-        service.stop();
-    }
+//    @AfterClass
+//    public static void createAndStopService() {
+//        service.stop();
+//    }
 }
