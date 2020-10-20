@@ -25,7 +25,7 @@ public class test {
 //                .build();
 //        service.start();
 //    }
-    public void Init() throws IOException {
+    public void Init() {
         String chromeDriverPath = "/home/www-root/chromedriver";
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
         driver = new ChromeDriver();
@@ -34,9 +34,9 @@ public class test {
     @Test
     public void simpleTest() {
         System.out.println("TESTING");
-//        driver.get("https://www.google.com/");
-//        String text = driver.findElement(By.name("btnK")).getText();
-//        System.out.println(text);
+        driver.get("https://www.google.com/");
+        String text = driver.findElement(By.name("btnK")).getText();
+        System.out.println(text);
     }
 
     @AfterClass
