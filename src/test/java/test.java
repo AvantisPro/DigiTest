@@ -14,7 +14,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class test {
-//    private static ChromeDriverService service;
       WebDriver driver;
 
 
@@ -32,13 +31,9 @@ public class test {
         driver = new ChromeDriver();
     }
 
-//    @BeforeTest
-//    public void setUp() {
-//        driver = new ChromeDriver(service);
-//    }
-
     @Test
     public void simpleTest() {
+        System.out.println("TESTING");
         driver.get("https://www.google.com/");
         String text = driver.findElement(By.name("btnK")).getText();
         System.out.println(text);
