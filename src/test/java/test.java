@@ -24,7 +24,7 @@ public class test {
     public void Init() throws IOException {
 //        String chromeDriverPath = "/home/www-root/chromedriver";
 //        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-        driver = new ChromeDriver();
+//        driver = new ChromeDriver();
         service.start();
     }
 
