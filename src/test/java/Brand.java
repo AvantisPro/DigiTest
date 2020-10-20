@@ -21,22 +21,6 @@ public class Brand {
     @BeforeClass
     public void init() throws IOException {
 
-        // set the chromedriver path
-        ChromeDriverService service = new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File("home/www-root/chromedriver"))// set the chromedriver path
-                .usingAnyFreePort()
-                .withEnvironment(ImmutableMap.of("DISPLAY", ":15"))
-                .withSilent(true)
-                .build();
-        service.start();
-
-        System.out.println("Reading chrome driver");
-        System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--headless");
-        WebDriver driver = new ChromeDriver(chromeOptions);
-
-        //System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_win.exe");
 //        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
 //        driver = new ChromeDriver();
 
