@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 public class test {
       WebDriver driver;
 
-    ChromeDriverService service = new ChromeDriverService.Builder().usingPort(7000).
+    ChromeDriverService service = new ChromeDriverService.Builder().usingPort(99).
             usingDriverExecutable(new File("/home/www-root/chromedriver")).build();
 
   @BeforeClass
