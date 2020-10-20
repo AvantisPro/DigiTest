@@ -34,12 +34,12 @@ public class test {
     @Test
     public void simpleTest() {
         System.out.println("TESTING");
-        driver.get("https://www.google.com/");
-        String text = driver.findElement(By.name("btnK")).getText();
-        System.out.println(text);
+//        driver.get("https://www.google.com/");
+//        String text = driver.findElement(By.name("btnK")).getText();
+//        System.out.println(text);
     }
 
-    @AfterTest
+    @AfterClass
     public void tearDown() {
         driver.quit();
     }
