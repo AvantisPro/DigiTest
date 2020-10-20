@@ -16,19 +16,16 @@ import org.testng.annotations.Test;
 public class test {
       WebDriver driver;
 
+    ChromeDriverService service = new ChromeDriverService.Builder().usingPort(7000).
+            usingDriverExecutable(new File("/home/www-root/chromedriver")).build();
 
   @BeforeClass
-//    public static void createAndStartService() throws IOException {
-//        service = new ChromeDriverService.Builder()
-//                .usingDriverExecutable(new File("home/www-root/chromedriver"))
-//                .usingAnyFreePort()
-//                .build();
-//        service.start();
-//    }
-    public void Init() {
+
+    public void Init() throws IOException {
         String chromeDriverPath = "/home/www-root/chromedriver";
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
         driver = new ChromeDriver();
+        service.start();
     }
 
     @Test
