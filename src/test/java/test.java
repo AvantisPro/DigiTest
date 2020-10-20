@@ -18,7 +18,7 @@ public class test {
       WebDriver driver;
 
 
-    @BeforeClass
+//  @BeforeClass
 //    public static void createAndStartService() throws IOException {
 //        service = new ChromeDriverService.Builder()
 //                .usingDriverExecutable(new File("home/www-root/chromedriver"))
