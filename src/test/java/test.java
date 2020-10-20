@@ -22,8 +22,8 @@ public class test {
   @BeforeClass
 
     public void Init() throws IOException {
-        String chromeDriverPath = "/home/www-root/chromedriver";
-        //System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+//        String chromeDriverPath = "/home/www-root/chromedriver";
+//        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
         driver = new ChromeDriver();
         service.start();
     }
