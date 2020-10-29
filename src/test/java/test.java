@@ -17,7 +17,7 @@ public class test {
       WebDriver driver;
 
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(80).
-            usingDriverExecutable(new File("/home/www-root/chromedriver")).build();
+            usingDriverExecutable(new File("/usr/bin/chromedriver")).build();
 
   @BeforeClass
 
