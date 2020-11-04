@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -21,19 +22,17 @@ public class test {
 
   @BeforeClass
     public void Init() throws IOException {
-//        String chromeDriverPath = "/usr/bin/chromedriver";
-//        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-//        driver = new ChromeDriver();
         service.start();
         driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
     }
 
     @Test
     public void simpleTest() {
-        System.out.println("TESTING");
-        driver.get("https://www.google.com/");
-        String text = driver.findElement(By.name("btnK")).getText();
-        System.out.println( "TEXT TEST IS -" + text);
+        System.out.println(" ================ TEST RUN ===============");
+        driver.get("https://dev.digisposa.com/auth/login");
+        String text = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(text.toLowerCase().contains("login"));
+        System.out.println(" ================ ALL WORKS FINE ===============");
     }
 
     @AfterClass
@@ -41,9 +40,4 @@ public class test {
         driver.quit();
         service.stop();
     }
-
-//    @AfterClass
-//    public static void createAndStopService() {
-//        service.stop();
-//    }
 }

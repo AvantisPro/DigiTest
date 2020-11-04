@@ -28,6 +28,10 @@ public class Brand {
     @BeforeClass
     public void init() throws IOException {
 
+        System.out.println("======================================");
+        System.out.println("===> BRAND USER TESTS <===");
+        System.out.println("======================================");
+
         service.start();
         driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
         driver.manage().window().maximize();
@@ -54,7 +58,7 @@ public class Brand {
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
         WebElement element = driver.findElement(By.name("login-button"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-        driver.findElement(By.name("login-buttons")).click();
+        driver.findElement(By.name("login-button")).click();
 
         //check if we on loggedin
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));

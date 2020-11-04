@@ -1,26 +1,41 @@
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.support.ui.Select;
 
 public class Buy_flow {
 
-    WebDriver driver;
+    WebDriver driver = null;
+
+    ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
+            usingDriverExecutable(new File("/usr/bin/chromedriver"))
+            //.withWhitelistedIps("")
+            //.withVerbose(true)
+            .build();
 
     String priceForDress = "5000";
     String priceForDressWithDelivery = "5150";
 
 
     @BeforeClass
-    public void init(){
-        //System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_win.exe");
-        System.setProperty("webdriver.chrome.driver", "usr/local/bin/chromedriver");
-        driver = new ChromeDriver();
+    public void init() throws IOException {
+        System.out.println("======================================");
+        System.out.println("===> BUY_FLOW TESTS <===");
+        System.out.println("======================================");
+
+        service.start();
+        driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
         driver.manage().window().maximize();
         driver.get("https://dev.digisposa.com/auth/login");
     }

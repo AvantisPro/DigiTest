@@ -3,6 +3,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -10,18 +13,27 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.IOException;
+
 public class Admin_panel {
 
-    WebDriver driver;
+    WebDriver driver = null;
+
+    ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
+            usingDriverExecutable(new File("/usr/bin/chromedriver"))
+            //.withWhitelistedIps("")
+            //.withVerbose(true)
+            .build();
 
     @BeforeClass
-    public void init(){
-        System.setProperty("webdriver.chrome.driver", "usr/local/bin/chromedriver");
-        driver = new ChromeDriver();
+    public void init() throws IOException {
+        System.out.println("======================================");
+        System.out.println("===> ADMIN USER TESTS <===");
+        System.out.println("======================================");
 
-//        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
-//        driver = new FirefoxDriver();
-
+        service.start();
+        driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
         driver.manage().window().maximize();
         driver.get("https://dev.digisposa.com/auth/login");
     }
