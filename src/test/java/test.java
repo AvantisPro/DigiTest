@@ -25,6 +25,8 @@ public class test {
 //        String chromeDriverPath = "/home/www-root/chromedriver";
 //        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 //        driver = new ChromeDriver();
+        System.setProperty("webdriver.chrome.logfile", "/var/log/chromedriver.log");
+        System.setProperty("webdriver.chrome.verboseLogging", "true");
         service.start();
     }
 
