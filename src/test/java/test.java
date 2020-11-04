@@ -4,12 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class test {
-      WebDriver driver;
+      WebDriver driver = null;
 
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
@@ -23,6 +25,7 @@ public class test {
 //        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 //        driver = new ChromeDriver();
         service.start();
+        driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
     }
 
     @Test
