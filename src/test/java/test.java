@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 public class test {
       WebDriver driver;
 
-    ChromeDriverService service = new ChromeDriverService.Builder().usingPort(80).
+    ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             .withWhitelistedIps("")
             .withVerbose(true)
