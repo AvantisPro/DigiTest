@@ -32,7 +32,7 @@ public class test {
     public void simpleTest() {
         System.out.println("TESTING");
         driver.get("https://www.google.com/");
-        String text = driver.findElement(By.name("btnK")).getAttribute("innerHTML");
+        String text = driver.findElement(By.name("btnK")).getText();
         System.out.println( "TEXT TEST IS -" + text);
     }
 
