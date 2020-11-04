@@ -230,7 +230,7 @@ public class Retailer {
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
-        System.out.println("===> TEST 09: CHECK NEWSLETTER");
+        System.out.println("===> TEST 09: CHECK NEWSLATTER");
 
         driver.get("https://dev.digisposa.com/message-center");
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[1]/div[2]/a[2]")).click();
@@ -239,7 +239,7 @@ public class Retailer {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("font-14")));
         String test_text = driver.findElement(By.className("font-14")).getText();
 
-        Assert.assertEquals(test_text, "Autotest_newsletter");
+        Assert.assertEquals(test_text, "Autotest_newslatter");
 
         System.out.println("===> TEST 09: PASSED");
         System.out.println(" ");
