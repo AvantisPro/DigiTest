@@ -11,18 +11,18 @@ import org.testng.annotations.Test;
 public class test {
       WebDriver driver;
 
-//    ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
-//            usingDriverExecutable(new File("/usr/bin/chromedriver"))
-//            //.withWhitelistedIps("")
-//            .withVerbose(true)
-//            .build();
+    ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
+            usingDriverExecutable(new File("/usr/bin/chromedriver"))
+            //.withWhitelistedIps("")
+            .withVerbose(true)
+            .build();
 
   @BeforeClass
     public void Init() throws IOException {
-        String chromeDriverPath = "/usr/bin/chromedriver";
-        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-        driver = new ChromeDriver();
-        //service.start();
+//        String chromeDriverPath = "/usr/bin/chromedriver";
+//        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+//        driver = new ChromeDriver();
+        service.start();
     }
 
     @Test
@@ -36,6 +36,7 @@ public class test {
     @AfterClass
     public void tearDown() {
         driver.quit();
+        service.stop();
     }
 
 //    @AfterClass
