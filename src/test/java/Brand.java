@@ -165,7 +165,7 @@ public class Brand {
     public void Test06_check_preview_of_brand_page() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
-        System.out.println("===> TEST 06: check_preview_of_brand_page");
+        System.out.println("===> TEST 06: CHECK PREVIEW OF THE BRAND PAGE");
 
         driver.get("https://dev.digisposa.com/brand-settings/profile");
         driver.findElement(By.id("title")).clear();
@@ -193,7 +193,7 @@ public class Brand {
     @Test
     public void Test07_invite_retailer() throws InterruptedException {
 
-        System.out.println("===> TEST 07: invite_retailer");
+        System.out.println("===> TEST 07: INVITE RETAILER");
 
         driver.get("https://dev.digisposa.com/dashboard");
         driver.get("https://dev.digisposa.com/retailer/invitations");
@@ -210,7 +210,7 @@ public class Brand {
     public void Test08_create_post() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
-        System.out.println("===> TEST 08: create_post");
+        System.out.println("===> TEST 08: CREATE POST");
 
         driver.get("https://dev.digisposa.com/learning-center");
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[1]/div[2]/a")).click();
@@ -252,7 +252,7 @@ public class Brand {
     public void Test08_dashboard_statistic() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
-        System.out.println("===> TEST 09: dashboard_statistic");
+        System.out.println("===> TEST 09: CHECK DASHBOARD STATISTIC");
 
         driver.get("https://dev.digisposa.com/brand-settings/dashboard");
 
@@ -297,7 +297,7 @@ public class Brand {
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
-        System.out.println("===> TEST 10: Newslatter test");
+        System.out.println("===> TEST 10: NEWSLATTER CHECK");
 
         driver.get("https://dev.digisposa.com/message-center");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[1]/div[2]/a[2]")));
@@ -320,7 +320,7 @@ public class Brand {
     public void Test11_search_order_in_history() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
-        System.out.println("===> TEST 11: search_order_in_history");
+        System.out.println("===> TEST 11: SEARCH ORDER IN HISTORY");
 
         driver.get("https://dev.digisposa.com/order#history");
 

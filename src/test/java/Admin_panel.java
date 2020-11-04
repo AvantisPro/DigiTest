@@ -44,7 +44,7 @@ public class Admin_panel {
         System.out.println("======================================");
         System.out.println(" ");
 
-        System.out.println("===> TEST 01: send_request_as_brand");
+        System.out.println("===> TEST 01: SEND REQUEST AS BRAND");
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
         driver.get("https://dev.digisposa.com/signup");
@@ -73,7 +73,7 @@ public class Admin_panel {
     @Test
     public void Test02_send_request_as_retailer() throws InterruptedException {
 
-        System.out.println("===> TEST 01: send_request_as_retailer");
+        System.out.println("===> TEST 02: SEND REQUEST AS RETAILER");
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
@@ -96,7 +96,7 @@ public class Admin_panel {
         String cong = driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[2]/div/div/h1")).getText();
         Assert.assertEquals(cong, "CONGRATULATIONS!");
 
-        System.out.println("===> TEST 01: PASSED");
+        System.out.println("===> TEST 02: PASSED");
         System.out.println(" ");
 
     }
@@ -104,7 +104,7 @@ public class Admin_panel {
     @Test
     public void Test03_login_as_admin_and_reject_brands_request() {
 
-        System.out.println("===> TEST 03: login_as_admin_and_reject_brands_request");
+        System.out.println("===> TEST 03: LOGIN AS ADMIN AND REJECT BRANDS REQUEST");
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
@@ -134,7 +134,7 @@ public class Admin_panel {
     @Test
     public void Test04_login_as_admin_and_reject_retailers_request() throws InterruptedException {
 
-        System.out.println("===> TEST 04: login_as_admin_and_reject_retailers_request");
+        System.out.println("===> TEST 04: LOGIN AS ADMIN AND REJECT RETAILERS REQUEST");
 
         WebDriverWait wait = new WebDriverWait(driver, 5);
 

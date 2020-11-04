@@ -83,7 +83,7 @@ public class Buy_flow {
 
 
         driver.findElement(By.id("delivery_date")).click();
-        driver.findElement(By.id("__BVID__29__cell-2020-10-31_")).click();
+        driver.findElement(By.id("__BVID__29__cell-2020-11-30_")).click();
         driver.findElement(By.id("delivery_date")).click();
 
         driver.findElement(By.className("w-100")).click();

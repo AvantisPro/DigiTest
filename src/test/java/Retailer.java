@@ -82,7 +82,8 @@ public class Retailer {
         System.out.println(text);
         Assert.assertTrue(text.toLowerCase().contains("test"));
 
-        System.out.println("===> TEST 03: SEND MESSAGE ===> PASSED");
+        System.out.println("===> TEST 03: PASSED");
+        System.out.println(" ");
 
     }
 
@@ -108,7 +109,7 @@ public class Retailer {
     public void Test05_add_brand_to_fav() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
-        System.out.println("===> TEST 05: add_brand_to_fav");
+        System.out.println("===> TEST 05: ADD BRAND TO FAVOURITES");
 
         //add brand to fav
         driver.get("https://dev.digisposa.com/brand/20");
@@ -134,7 +135,7 @@ public class Retailer {
     @Test
     public void Test06_add_collection_to_fav() {
 
-        System.out.println("===> TEST 06: add_collection_to_fav");
+        System.out.println("===> TEST 06: ADD COLLECTION TO FAVOURITES");
 
         //Add collection to fav
         driver.get("https://dev.digisposa.com/brand/20/collection/210");
@@ -158,7 +159,7 @@ public class Retailer {
     @Test
     public void Test07_add_dress_to_fav() {
 
-        System.out.println("===> TEST 07: add_dress_to_fav");
+        System.out.println("===> TEST 07: ADD DRESS TO FAVOURITES");
 
         //add dress to fav
         driver.get("https://dev.digisposa.com/brand/20/collection/210/item/214");
@@ -187,7 +188,7 @@ public class Retailer {
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
-        System.out.println("===> TEST 08: create_post");
+        System.out.println("===> TEST 08: CREATE POST");
 
         driver.get("https://dev.digisposa.com/learning-center");
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[1]/div[2]/a")).click();
@@ -229,7 +230,7 @@ public class Retailer {
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
-        System.out.println("===> TEST 09: check_newslatter");
+        System.out.println("===> TEST 09: CHECK NEWSLETTER");
 
         driver.get("https://dev.digisposa.com/message-center");
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[1]/div[2]/a[2]")).click();
@@ -238,7 +239,7 @@ public class Retailer {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("font-14")));
         String test_text = driver.findElement(By.className("font-14")).getText();
 
-        Assert.assertEquals(test_text, "Autotest_newslatter");
+        Assert.assertEquals(test_text, "Autotest_newsletter");
 
         System.out.println("===> TEST 09: PASSED");
         System.out.println(" ");
@@ -249,12 +250,17 @@ public class Retailer {
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
+        System.out.println("===> TEST 10: SEARCH PRODUCT ON BRANDS PAGE");
+
         driver.get("https://dev.digisposa.com/brand/20");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[2]/div/input")));
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[2]/div/input")).sendKeys("UNO");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"collection\"]/div/div/div/div/div/div/h4")));
         String dressName = driver.findElement(By.xpath("//*[@id=\"collection\"]/div/div/div/div/div/div/h4")).getText();
         Assert.assertEquals(dressName,"UNO");
+
+        System.out.println("===> TEST 10: PASSED");
+        System.out.println(" ");
     }
 
     @Test
@@ -262,12 +268,17 @@ public class Retailer {
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
+        System.out.println("===> TEST 11: SEARCH IN INVOICE HISTORY");
+
         driver.get("https://dev.digisposa.com/order#history");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"history\"]/div/div[1]/div/div[1]/div[1]/input")));
         driver.findElement(By.xpath("//*[@id=\"history\"]/div/div[1]/div/div[1]/div[1]/input")).sendKeys("0000000272");
         Thread.sleep(5000);
         String orderNumber = driver.findElement(By.xpath("//*[@id=\"history\"]/div/div[2]/div/div/div/div/div/div[1]/h4")).getText();
         Assert.assertEquals(orderNumber,"#0000000272" );
+
+        System.out.println("===> TEST 11: PASSED");
+        System.out.println(" ");
     }
 
 
