@@ -18,11 +18,10 @@ public class test {
             .build();
 
   @BeforeClass
-
     public void Init() throws IOException {
-        String chromeDriverPath = "/usr/bin/chromedriver";
-        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-        driver = new ChromeDriver();
+//        String chromeDriverPath = "/usr/bin/chromedriver";
+//        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+//        driver = new ChromeDriver();
         service.start();
     }
 
