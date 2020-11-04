@@ -28,10 +28,6 @@ public class Admin_panel {
 
     @BeforeClass
     public void init() throws IOException {
-        System.out.println("======================================");
-        System.out.println("===> ADMIN USER TESTS <===");
-        System.out.println("======================================");
-
         service.start();
         driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
         driver.manage().window().maximize();
@@ -41,6 +37,12 @@ public class Admin_panel {
 
     @Test
     public void Test01_send_request_as_brand() throws InterruptedException {
+
+        System.out.println(" ");
+        System.out.println("======================================");
+        System.out.println("===> ADMIN USER TESTS <===");
+        System.out.println("======================================");
+        System.out.println(" ");
 
         System.out.println("===> TEST 01: send_request_as_brand");
         WebDriverWait wait = new WebDriverWait(driver, 60);

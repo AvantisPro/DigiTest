@@ -26,10 +26,6 @@ public class Retailer {
 
     @BeforeClass
     public void init() throws IOException {
-        System.out.println("======================================");
-        System.out.println("===> RETAILER USER TESTS <===");
-        System.out.println("======================================");
-
         service.start();
         driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
         driver.manage().window().maximize();
@@ -38,6 +34,13 @@ public class Retailer {
 
     @Test
     public void Test01_check_login_page(){
+
+        System.out.println(" ");
+        System.out.println("======================================");
+        System.out.println("===> RETAILER USER TESTS <===");
+        System.out.println("======================================");
+        System.out.println(" ");
+
         System.out.println("===> TEST 01: CHECK LOGIN PAGE");
         String text = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(text.toLowerCase().contains("login"));

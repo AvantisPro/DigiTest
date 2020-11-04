@@ -30,10 +30,6 @@ public class Buy_flow {
 
     @BeforeClass
     public void init() throws IOException {
-        System.out.println("======================================");
-        System.out.println("===> BUY_FLOW TESTS <===");
-        System.out.println("======================================");
-
         service.start();
         driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
         driver.manage().window().maximize();
@@ -42,7 +38,14 @@ public class Buy_flow {
 
     @Test
     public void Test01_login_as_Retailer_and_buy_dress() throws InterruptedException {
-        System.out.println("===> Test01_login_as_Retailer_and_buy_dress");
+
+        System.out.println(" ");
+        System.out.println("======================================");
+        System.out.println("===> BUY FLOW TESTS <===");
+        System.out.println("======================================");
+        System.out.println(" ");
+
+        System.out.println("===> TEST 01: LOGIN AS RETAILER AND BUY DRESS");
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
@@ -119,14 +122,14 @@ public class Buy_flow {
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
 
-        System.out.println("===> Test01_login_as_Retailer_and_buy_dress ===> PASSED");
+        System.out.println("===> TEST 01: PASSED");
         System.out.println(" ");
     }
 
     @Test
     public void Test02_login_as_Brand_and_accept_order() throws InterruptedException {
 
-        System.out.println("===> Test02_login_as_Brand_and_accept_order");
+        System.out.println("===> TEST 02: LOGIN AS BRAND AND ACCEPT ORDER");
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
@@ -186,14 +189,14 @@ public class Buy_flow {
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
 
-        System.out.println("===> Test02_login_as_Brand_and_accept_order ===> PASSED");
+        System.out.println("===> TEST 02: PASSED");
         System.out.println(" ");
     }
 
     @Test
     public void Test03_login_as_Retailer_and_accept_order() throws InterruptedException {
 
-        System.out.println("===> Test03_login_as_Retailer_and_accept_order");
+        System.out.println("===> TEST 03: LOGIN AS RETAILER AND CONFIRM ORDER");
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
@@ -238,14 +241,14 @@ public class Buy_flow {
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
 
-        System.out.println("===> Test03_login_as_Retailer_and_accept_order ===> PASSED");
+        System.out.println("===> TEST 03: PASSED");
         System.out.println(" ");
     }
 
     @Test
     public void Test04_login_as_Brand_and_create_invoice() throws InterruptedException {
 
-        System.out.println("===> Test04_login_as_Brand_and_create_invoice");
+        System.out.println("===> TEST 04: LOGIN AS BRAND AND CREATE INVOICE");
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
@@ -322,14 +325,14 @@ public class Buy_flow {
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
 
-        System.out.println("===> Test04_login_as_Brand_and_create_invoice ===> PASSED");
+        System.out.println("===> TEST 04: PASSED");
         System.out.println(" ");
     }
 
     @Test
     public void Test05_login_as_Retailer_mark_invoice_as_paid() throws InterruptedException {
 
-        System.out.println("===> Test05_login_as_Retailer_mark_invoice_as_paid");
+        System.out.println("===> TEST 05: LOGIN AS RETAILER AND MARK INVOICE AS PAID");
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
         //enter as Margot
@@ -374,7 +377,7 @@ public class Buy_flow {
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
 
-        System.out.println("===> Test05_login_as_Retailer_mark_invoice_as_paid ===> PASSED");
+        System.out.println("===> TEST 05: PASSED");
         System.out.println(" ");
 
     }
