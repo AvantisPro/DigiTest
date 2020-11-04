@@ -25,7 +25,7 @@ public class test {
 //        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 //        driver = new ChromeDriver();
         service.start();
-        driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
+        //driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
     }
 
     @Test
