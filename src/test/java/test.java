@@ -12,7 +12,10 @@ public class test {
       WebDriver driver;
 
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
-            usingDriverExecutable(new File("/usr/bin/chromedriver")).build();
+            usingDriverExecutable(new File("/usr/bin/chromedriver"))
+            //.withWhitelistedIps("")
+            .withVerbose(true)
+            .build();
 
   @BeforeClass
 
