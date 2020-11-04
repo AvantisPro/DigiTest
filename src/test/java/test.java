@@ -16,7 +16,7 @@ public class test {
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             //.withWhitelistedIps("")
-            .withVerbose(true)
+            //.withVerbose(true)
             .build();
 
   @BeforeClass
