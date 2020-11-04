@@ -18,9 +18,8 @@ public class test {
 
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
-            .withWhitelistedIps("")
+            //.withWhitelistedIps("")
             .withVerbose(true)
-            //.withLogFile(new File("/var/log/chromedriver.log"))
             .build();
 
   @BeforeClass
@@ -29,8 +28,6 @@ public class test {
 //        String chromeDriverPath = "/home/www-root/chromedriver";
 //        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 //        driver = new ChromeDriver();
-//        System.setProperty("webdriver.chrome.logfile", "/var/log/chromedriver.log");
-//        System.setProperty("webdriver.chrome.verboseLogging", "true");
         service.start();
     }
 
