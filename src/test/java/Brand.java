@@ -51,7 +51,7 @@ public class Brand {
 
         //login
         driver.findElement(By.id("loginform-email")).sendKeys("loon_vader@mailinator.com");
-        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        driver.findElement(By.id("loginform-password")).sendKeys("123456789");
         WebElement element = driver.findElement(By.name("login-button"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
         driver.findElement(By.name("login-button")).click();
