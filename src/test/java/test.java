@@ -1,30 +1,25 @@
 import java.io.File;
 import java.io.IOException;
-
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
-
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class test {
       WebDriver driver;
 
-    ChromeDriverService service = new ChromeDriverService.Builder().usingPort(80).
+    ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
             usingDriverExecutable(new File("/usr/bin/chromedriver")).build();
 
   @BeforeClass
 
     public void Init() throws IOException {
-//        String chromeDriverPath = "/home/www-root/chromedriver";
-//        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-//        driver = new ChromeDriver();
+        String chromeDriverPath = "/usr/bin/chromedriver";
+        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+        driver = new ChromeDriver();
         service.start();
     }
 
