@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class test {
-      WebDriver driver = null;
+      WebDriver driver;
 
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
@@ -25,7 +25,7 @@ public class test {
 //        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 //        driver = new ChromeDriver();
         service.start();
-        //driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
+        driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
     }
 
     @Test
