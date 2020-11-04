@@ -27,11 +27,6 @@ public class Brand {
     @BeforeClass
     public void init() throws IOException {
 
-//        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chromedriver");
-//        driver = new ChromeDriver();
-
-//        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
-//        driver = new FirefoxDriver();
         service.start();
         driver.manage().window().maximize();
         driver.get("https://dev.digisposa.com/auth/login");
