@@ -156,6 +156,7 @@ public class Admin_panel {
     @AfterClass
     public void end(){
         driver.quit();
+        service.stop();
     }
 
 }

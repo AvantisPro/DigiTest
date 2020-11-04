@@ -286,5 +286,6 @@ public class Retailer {
     @AfterClass
     public void end(){
         driver.quit();
+        service.stop();
     }
 }

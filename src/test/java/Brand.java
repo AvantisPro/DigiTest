@@ -339,6 +339,7 @@ public class Brand {
     @AfterClass
     public void end(){
         driver.quit();
+        service.stop();
     }
 
 }

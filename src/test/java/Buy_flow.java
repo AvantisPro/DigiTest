@@ -385,6 +385,7 @@ public class Buy_flow {
         @AfterClass
     public void end(){
         driver.quit();
+        service.stop();
     }
 
 }
