@@ -2,6 +2,8 @@ import com.google.common.collect.ImmutableMap;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -15,7 +17,7 @@ import java.util.List;
 
 
 public class Brand {
-    WebDriver driver;
+    WebDriver driver = null;
 
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
@@ -27,6 +29,7 @@ public class Brand {
     public void init() throws IOException {
 
         service.start();
+        driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
         driver.manage().window().maximize();
         driver.get("https://dev.digisposa.com/auth/login");
     }
