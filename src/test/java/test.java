@@ -20,7 +20,7 @@ public class test {
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             .withWhitelistedIps("")
             .withVerbose(true)
-            .withLogFile(new File("/var/log/chromedriver.log"))
+            //.withLogFile(new File("/var/log/chromedriver.log"))
             .build();
 
   @BeforeClass
