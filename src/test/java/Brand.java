@@ -18,6 +18,12 @@ import java.util.List;
 public class Brand {
     WebDriver driver;
 
+    ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
+            usingDriverExecutable(new File("/usr/bin/chromedriver"))
+            //.withWhitelistedIps("")
+            .withVerbose(true)
+            .build();
+
     @BeforeClass
     public void init() throws IOException {
 
@@ -26,7 +32,7 @@ public class Brand {
 
 //        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
 //        driver = new FirefoxDriver();
-
+        service.start();
         driver.manage().window().maximize();
         driver.get("https://dev.digisposa.com/auth/login");
     }
