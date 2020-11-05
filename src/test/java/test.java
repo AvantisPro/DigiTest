@@ -32,7 +32,7 @@ public class test {
     }
 
     @Test
-    public void simpleTest() {
+    public void Test01() {
         System.out.println(" ================ TEST RUN ===============");
         String text = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(text.toLowerCase().contains("login"));
