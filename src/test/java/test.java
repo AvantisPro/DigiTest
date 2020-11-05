@@ -28,12 +28,12 @@ public class test {
     public void Init() throws IOException {
         service.start();
         driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
+        driver.get("https://dev.digisposa.com/auth/login");
     }
 
     @Test
     public void simpleTest() {
         System.out.println(" ================ TEST RUN ===============");
-        driver.get("https://dev.digisposa.com/auth/login");
         String text = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(text.toLowerCase().contains("login"));
         System.out.println(" ================ ALL WORKS FINE ===============");
