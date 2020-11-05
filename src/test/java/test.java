@@ -19,7 +19,7 @@ public class test {
       WebDriver driver = null;
 
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
-            usingDriverExecutable(new File("/src/main/resources/chromedriver"))
+            usingDriverExecutable(new File("/usr/bin/chromedriver"))
             //.withWhitelistedIps("")
             //.withVerbose(true)
             .build();
