@@ -21,8 +21,6 @@ public class Brand {
 
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
             usingDriverExecutable(new File("resources/chromedriver"))
-            //.withWhitelistedIps("")
-            //.withVerbose(true)
             .build();
 
     @BeforeClass
