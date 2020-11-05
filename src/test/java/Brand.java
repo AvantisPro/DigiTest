@@ -1,9 +1,7 @@
 import java.io.File;
 import java.io.IOException;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import java.util.List;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -15,7 +13,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import java.util.List;
 
 
 public class Brand {
@@ -28,10 +25,9 @@ public class Brand {
             .build();
 
     @BeforeClass
-    public void init() throws IOException {
+    public void Init() throws IOException {
         service.start();
         driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
-        driver.manage().window().maximize();
         driver.get("https://dev.digisposa.com/auth/login");
     }
 
@@ -336,11 +332,9 @@ public class Brand {
         System.out.println(" ");
     }
 
-
     @AfterClass
     public void tearDown() {
         driver.quit();
         service.stop();
     }
-
 }
