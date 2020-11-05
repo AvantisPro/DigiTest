@@ -20,7 +20,7 @@ public class Brand {
     WebDriver driver = null;
 
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
-            usingDriverExecutable(new File("/src/main/resources/chromedriver"))
+            usingDriverExecutable(new File("resources/chromedriver"))
             //.withWhitelistedIps("")
             //.withVerbose(true)
             .build();
