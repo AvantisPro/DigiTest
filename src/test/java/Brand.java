@@ -1,4 +1,9 @@
-import com.google.common.collect.ImmutableMap;
+import java.io.File;
+import java.io.IOException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -10,9 +15,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 
@@ -21,11 +23,12 @@ public class Brand {
 
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
+            //.withWhitelistedIps("")
+            //.withVerbose(true)
             .build();
 
     @BeforeClass
     public void init() throws IOException {
-        System.out.println(" ");
         service.start();
         driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
         driver.manage().window().maximize();
@@ -335,7 +338,7 @@ public class Brand {
 
 
     @AfterClass
-    public void end(){
+    public void tearDown() {
         driver.quit();
         service.stop();
     }
