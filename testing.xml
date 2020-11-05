@@ -3,11 +3,11 @@
 <suite name="Suite">
     <test name="Test">
         <classes>
-<!--            <class name="test"></class>-->
+            <class name="test"></class>
             <class name="Brand"></class>
-            <class name="Retailer"></class>
-            <class name="Buy_flow"></class>
-            <class name="Admin_panel"></class>
+<!--            <class name="Retailer"></class>-->
+<!--            <class name="Buy_flow"></class>-->
+<!--            <class name="Admin_panel"></class>-->
         </classes>
     </test>
 </suite>
