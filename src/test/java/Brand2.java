@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -68,7 +67,7 @@ public class Brand2 {
     }
 
     @Test
-    public void Test03_createCollection() throws InterruptedException {
+    public void Test03_createCollection(){
 
         System.out.println("===> TEST 03: CREATE COLLECTION");
 
@@ -120,7 +119,7 @@ public class Brand2 {
     @Test
     public void Test04_search_retailer() throws InterruptedException {
 
-        WebDriverWait wait = new WebDriverWait(driver, 60);
+        //WebDriverWait wait = new WebDriverWait(driver, 60);
 
         System.out.println("===> TEST 04: CHECK SEARCH");
         driver.manage().window().maximize();
@@ -136,7 +135,7 @@ public class Brand2 {
     }
 
     @Test
-    public void Test05_send_message() throws InterruptedException {
+    public void Test05_send_message() {
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
@@ -188,7 +187,7 @@ public class Brand2 {
     }
 
     @Test
-    public void Test07_invite_retailer() throws InterruptedException {
+    public void Test07_invite_retailer() {
 
         System.out.println("===> TEST 07: INVITE RETAILER");
 
@@ -204,7 +203,7 @@ public class Brand2 {
     }
 
     @Test
-    public void Test08_create_post() throws InterruptedException {
+    public void Test08_create_post(){
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
         System.out.println("===> TEST 08: CREATE POST");
@@ -246,7 +245,7 @@ public class Brand2 {
     }
 
     @Test
-    public void Test08_dashboard_statistic() throws InterruptedException {
+    public void Test08_dashboard_statistic() {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
         System.out.println("===> TEST 09: CHECK DASHBOARD STATISTIC");
@@ -290,7 +289,7 @@ public class Brand2 {
     }
 
     @Test
-    public void Test10_Newslatter() throws InterruptedException {
+    public void Test10_Newslatter() {
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
@@ -314,7 +313,7 @@ public class Brand2 {
     }
 
     @Test
-    public void Test11_search_order_in_history() throws InterruptedException {
+    public void Test11_search_order_in_history() {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
         System.out.println("===> TEST 11: SEARCH ORDER IN HISTORY");

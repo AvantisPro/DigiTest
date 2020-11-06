@@ -1,9 +1,7 @@
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -26,7 +24,6 @@ public class Retailer2 {
 
     @BeforeClass
     public void init() throws IOException {
-        System.out.println("");
         service.start();
         driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
         driver.manage().window().maximize();
@@ -67,7 +64,7 @@ public class Retailer2 {
     }
 
     @Test
-    public void Test03_write_message() throws InterruptedException {
+    public void Test03_write_message() {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
         System.out.println("===> TEST 03: SEND MESSAGE");
@@ -90,7 +87,7 @@ public class Retailer2 {
 
     @Test
     public void Test04_search_check() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, 60);
+        //WebDriverWait wait = new WebDriverWait(driver, 60);
 
         System.out.println("===> TEST 04: CHECK SEARCH");
 
@@ -107,7 +104,7 @@ public class Retailer2 {
     }
 
     @Test
-    public void Test05_add_brand_to_fav() throws InterruptedException {
+    public void Test05_add_brand_to_fav() {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
         System.out.println("===> TEST 05: ADD BRAND TO FAVOURITES");
@@ -227,7 +224,7 @@ public class Retailer2 {
     }
 
     @Test
-    public void Test09_check_newslatter() throws InterruptedException {
+    public void Test09_check_newslatter() {
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 

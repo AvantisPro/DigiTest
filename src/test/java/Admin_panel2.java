@@ -1,14 +1,11 @@
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -36,7 +33,7 @@ public class Admin_panel2 {
 
 
     @Test
-    public void Test01_send_request_as_brand() throws InterruptedException {
+    public void Test01_send_request_as_brand() {
 
         System.out.println(" ");
         System.out.println("======================================");
@@ -71,7 +68,7 @@ public class Admin_panel2 {
     }
 
     @Test
-    public void Test02_send_request_as_retailer() throws InterruptedException {
+    public void Test02_send_request_as_retailer() {
 
         System.out.println("===> TEST 02: SEND REQUEST AS RETAILER");
 
@@ -132,11 +129,11 @@ public class Admin_panel2 {
     }
 
     @Test
-    public void Test04_login_as_admin_and_reject_retailers_request() throws InterruptedException {
+    public void Test04_login_as_admin_and_reject_retailers_request() {
 
         System.out.println("===> TEST 04: LOGIN AS ADMIN AND REJECT RETAILERS REQUEST");
 
-        WebDriverWait wait = new WebDriverWait(driver, 5);
+        //WebDriverWait wait = new WebDriverWait(driver, 5);
 
         //go to retailers requests
         driver.get("https://dev.digisposa.com/admin/request");
