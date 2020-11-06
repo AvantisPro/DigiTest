@@ -35,8 +35,6 @@ public class Buy_flow2 {
     public void init() throws IOException {
         service.start();
         driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
-//        System.setProperty("webdriver.chrome.driver", "D:/IntelijIDEA/IdeaProjects/DigiTest/src/main/resources/chromedriver_win.exe");
-//        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://dev.digisposa.com/auth/login");
     }
