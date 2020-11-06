@@ -144,8 +144,8 @@ public class Buy_flow2 {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element1);
         driver.findElement(By.name("login-button")).click();
         element1.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"login-form\"]/div[4]/div[1]/button")));
-        driver.findElement(By.xpath("//*[@id=\"login-form\"]/div[4]/div[1]/button")).click();
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"login-form\"]/div[4]/div[1]/button")));
+        //driver.findElement(By.xpath("//*[@id=\"login-form\"]/div[4]/div[1]/button")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
         String text = driver.findElement(By.className("col-auto")).getText();
         Assert.assertTrue(text.toLowerCase().contains("dashboard"));
