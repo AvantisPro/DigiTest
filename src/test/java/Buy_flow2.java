@@ -19,11 +19,13 @@ import org.testng.annotations.Test;
 public class Buy_flow2 {
     WebDriver driver = null;
 
+
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             //.withWhitelistedIps("")
             //.withVerbose(true)
             .build();
+
 
     String priceForDress = "5000";
     String priceForDressWithDelivery = "5150";
@@ -31,9 +33,10 @@ public class Buy_flow2 {
 
     @BeforeClass
     public void init() throws IOException {
-        System.out.println(" ");
         service.start();
         driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
+//        System.setProperty("webdriver.chrome.driver", "D:/IntelijIDEA/IdeaProjects/DigiTest/src/main/resources/chromedriver_win.exe");
+//        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://dev.digisposa.com/auth/login");
     }

@@ -5,10 +5,10 @@
         <classes>
 <!--            <class name="test"></class>-->
 
-            <class name="Brand2"></class>
-            <class name="Retailer2"></class>
+<!--            <class name="Brand2"></class>-->
+<!--            <class name="Retailer2"></class>-->
             <class name="Buy_flow2"></class>
-            <class name="Admin_panel2"></class>
+<!--            <class name="Admin_panel2"></class>-->
         </classes>
     </test>
 </suite>
