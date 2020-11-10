@@ -148,6 +148,103 @@ public class Admin_panel2 {
         System.out.println(" ");
     }
 
+    @Test
+    public void Test05_block_brand_on_platform() throws InterruptedException {
+
+        System.out.println("===> TEST 05: BLOCK BRAND ON PLATFORM");
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
+        driver.get("https://dev.digisposa.com/signup");
+
+        //choose brand
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[2]/div/form/div[1]/div[1]/div/label")).click();
+        driver.findElement(By.id("first_name")).sendKeys("Test");
+        driver.findElement(By.id("last_name")).sendKeys("Brand");
+        driver.findElement(By.id("email")).sendKeys("loon_auto_brand@mailinator.com");
+        driver.findElement(By.id("phone_number")).sendKeys("+380998887722");
+        driver.findElement(By.id("website")).sendKeys("https://dev.digisposa.com/");
+        driver.findElement(By.id("company")).sendKeys("AutoTest");
+        driver.findElement(By.id("comment")).sendKeys("testing");
+
+        driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[2]/div/form/div[9]/div/button")).click();
+
+        //check if success
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"app\"]/div/div/div[2]/div/div/h1")));
+        String cong = driver.findElement(By.xpath("//*[@id=\"app\"]/div/div/div[2]/div/div/h1")).getText();
+        Assert.assertEquals(cong, "CONGRATULATIONS!");
+
+        driver.get("https://dev.digisposa.com/auth/login");
+        driver.findElement(By.id("loginform-email")).sendKeys("sposadigi@gmail.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        driver.findElement(By.name("login-button")).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text.toLowerCase().contains("dashboard"));
+
+        driver.get("https://dev.digisposa.com/admin/request");
+        String brand_name = driver.findElement(By.xpath("//*[@id=\"brand\"]/div/div/div[1]/div[1]/div[1]")).getText();
+        Assert.assertEquals(brand_name, "Test Brand");
+
+        driver.findElement(By.xpath("//*[@id=\"brand\"]/div/div/div[2]/div[2]/div/div/div[1]/button")).click();
+        Thread.sleep(5000);
+
+        driver.get("https://dev.digisposa.com/admin/brand");
+
+        //find brand
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/table/tbody/tr[11]/td[3]")));
+        String brands_name = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/table/tbody/tr[11]/td[3]")).getText();
+        Assert.assertEquals(brands_name, "AutoTest");
+
+        //click block
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/table/tbody/tr[11]/td[10]/div")));
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/table/tbody/tr[11]/td[10]/div")).click();
+
+        //confirm
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"swal2-title\"]")));
+        String title = driver.findElement(By.xpath("//*[@id=\"swal2-title\"]")).getText();
+        Assert.assertEquals(title, "Block account");
+
+        //confirm block
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[4]/div/div[3]/button[1]")));
+        driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
+        Thread.sleep(5000);
+
+        //check
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/table/tbody/tr[11]/td[10]/div/a")));
+        String activate = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/table/tbody/tr[11]/td[10]/div/a")).getText();
+        Assert.assertEquals(activate, "ACTIVATE");
+
+        System.out.println("===> TEST 05: PASSED");
+        System.out.println(" ");
+    }
+
+    @Test
+    public void Test06_delete_brand_from_platform()  {
+
+        System.out.println("===> TEST 06: DELETE BRAND FROM PLATFORM");
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
+        //find brand
+        driver.get("https://dev.digisposa.com/admin/brand");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/table/tbody/tr[11]/td[3]")));
+        String brands_name = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/table/tbody/tr[11]/td[3]")).getText();
+        Assert.assertEquals(brands_name, "AutoTest");
+
+        //delete acc
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/table/tbody/tr[11]/td[11]/a/span")).click();
+        String delete_text = driver.findElement(By.xpath("//*[@id=\"swal2-title\"]")).getText();
+        Assert.assertEquals(delete_text, "Deleting a brand");
+        //confirm
+        driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
+
+        System.out.println("===> TEST 06: PASSED");
+        System.out.println(" ");
+
+    }
+
     @AfterClass
     public void tearDown() {
         driver.quit();
