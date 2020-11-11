@@ -255,6 +255,19 @@ public class Admin_panel2 {
         //confirm
         driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
 
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        String loginText = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
         System.out.println("===> TEST 06: PASSED");
         System.out.println(" ");
 
