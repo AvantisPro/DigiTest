@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.Random;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -257,6 +258,125 @@ public class Admin_panel2 {
         System.out.println("===> TEST 06: PASSED");
         System.out.println(" ");
 
+    }
+
+    @Test
+    public void Test07_check_ticket_opened_and_closed_by_brand( ) throws InterruptedException {
+
+        Random rand = new Random(); //instance of random class
+        int upperbound = 100;
+        //generate random values from 0-24
+        int int_random = rand.nextInt(upperbound);
+
+
+        System.out.println("===> TEST 07: Check ticket");
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
+        driver.get("https://dev.digisposa.com/auth/login");
+
+        //login as brand
+        driver.findElement(By.id("loginform-email")).sendKeys("loon_vader@mailinator.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element1 = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element1);
+        driver.findElement(By.name("login-button")).click();
+
+        //check if we on loggedin
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text.toLowerCase().contains("dashboard"));
+
+        //send ticket
+        driver.get("https://dev.digisposa.com/help-center");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("form-control")));
+        driver.findElement(By.className("form-control")).sendKeys("Hi, it's autotests" + " : " + int_random );
+        driver.findElement(By.className("fa-telegram-plane")).click();
+        Thread.sleep(5000);
+
+        //check if created
+        String ticket_text = driver.findElement(By.className("ticket__text")).getText();
+        Assert.assertEquals(ticket_text, "Hi, it's autotests" + " : " + int_random);
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        String loginText = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+        //login as adm
+        driver.get("https://dev.digisposa.com/auth/login");
+
+        driver.findElement(By.id("loginform-email")).sendKeys("sposadigi@gmail.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        driver.findElement(By.name("login-button")).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text2 = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text2.toLowerCase().contains("dashboard"));
+
+        //go to ticket
+        driver.findElement(By.className("ticket__reply__icon")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("mc-message-text")));
+        String ticket_text_from_user = driver.findElement(By.className("mc-message-text")).getText();
+        Assert.assertEquals(ticket_text_from_user, "Hi, it's autotests" + " : " + int_random);
+
+        //reply
+        driver.findElement(By.className("form-control-lg")).sendKeys("This is reply" + " : " + int_random);
+        driver.findElement(By.className("fa-telegram-plane")).click();
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+        //login as brand
+        driver.get("https://dev.digisposa.com/auth/login");
+
+        //login as brand
+        driver.findElement(By.id("loginform-email")).sendKeys("loon_vader@mailinator.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element2 = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element2);
+        driver.findElement(By.name("login-button")).click();
+
+        //check if we on loggedin
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        Assert.assertTrue(text.toLowerCase().contains("dashboard"));
+
+        //go to ticket
+        driver.get("https://dev.digisposa.com/help-center");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fa-comment-alt")));
+        driver.findElement(By.className("fa-comment-alt")).click();
+
+        //check reply
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("mc-message-text")));
+        String admins_reply = driver.findElement(By.className("mc-message-text")).getText();
+        Assert.assertEquals(admins_reply, "This is reply" + " : " + int_random);
+
+        //close ticket
+        driver.findElement(By.className("mc-delete-chat")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/div[2]/div[2]/h3")));
+        String ticket_closed = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/div[2]/div[2]/h3")).getText();
+        Assert.assertEquals(ticket_closed, "TICKET RESOLVED");
+
+        System.out.println("===> TEST 06: PASSED");
+        System.out.println(" ");
     }
 
     @AfterClass
