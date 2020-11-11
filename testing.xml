@@ -5,6 +5,7 @@
         <classes>
             <class name="Admin_panel2"></class>
             <class name="Buy_flow"></class>
+
 <!--            <class name="Brand2"></class>-->
 <!--            <class name="Retailer2"></class>-->
         </classes>
