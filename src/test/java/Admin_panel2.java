@@ -128,6 +128,7 @@ public class Admin_panel2 {
 
     @Test
     public void Test04_login_as_admin_and_reject_retailers_request() {
+        WebDriverWait wait = new WebDriverWait(driver, 60);
 
         System.out.println("===> TEST 04: LOGIN AS ADMIN AND REJECT RETAILERS REQUEST");
 
@@ -141,6 +142,19 @@ public class Admin_panel2 {
         Assert.assertEquals(brand_name, "Test Retailer");
 
         driver.findElement(By.xpath("//*[@id=\"retailers\"]/div/div/div[2]/div[2]/div/div/div[3]/button")).click();
+
+        //login
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        String loginText = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
 
         System.out.println("===> TEST 04: PASSED");
         System.out.println(" ");
