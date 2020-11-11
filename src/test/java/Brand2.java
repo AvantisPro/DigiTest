@@ -373,6 +373,9 @@ public class Brand2 {
         //check if deleted
         String empty_title = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[2]/div/div[2]/div[1]/div[1]/div/span")).getText();
         Assert.assertEquals(empty_title, "Start you messaging");
+
+        System.out.println("===> TEST 12: PASSED");
+        System.out.println(" ");
     }
 
     @Test

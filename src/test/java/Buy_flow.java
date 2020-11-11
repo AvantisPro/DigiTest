@@ -258,6 +258,7 @@ public class Buy_flow {
         //enter
         driver.get("https://dev.digisposa.com/auth/login");
         driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("LoginForm[email]")));
         driver.findElement(By.name("LoginForm[email]")).sendKeys("loon_vader@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
         WebElement element2 = driver.findElement(By.name("login-button"));
