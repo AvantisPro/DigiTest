@@ -157,7 +157,8 @@ public class Admin_panel2 {
         driver.get("https://dev.digisposa.com/signup");
 
         //choose brand
-        driver.findElement(By.id("__BVID__12")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("custom-control-label")));
+        driver.findElement(By.className("custom-control-label")).click();
         driver.findElement(By.id("first_name")).sendKeys("Test");
         driver.findElement(By.id("last_name")).sendKeys("Brand");
         driver.findElement(By.id("email")).sendKeys("loon_auto_brand@mailinator.com");
