@@ -29,7 +29,7 @@ public class Admin_panel2 {
         driver.get("https://dev.digisposa.com/auth/login");
     }
 
-
+//
     @Test
     public void Test01_send_request_as_brand() {
 
