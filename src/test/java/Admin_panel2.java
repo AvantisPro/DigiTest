@@ -631,6 +631,305 @@ public class Admin_panel2 {
         System.out.println(" ");
     }
 
+    @Test
+    public void Test10_create_new_post_as_brand() throws InterruptedException {
+        System.out.println("===> TEST 10: CREATE NEW POST AS BRAND");
+
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
+        driver.get("https://dev.digisposa.com/auth/login");
+
+        //login as brand
+        driver.findElement(By.id("loginform-email")).sendKeys("loon_vader@mailinator.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element1 = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element1);
+        driver.findElement(By.name("login-button")).click();
+
+        //check if we on loggedin
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text.toLowerCase().contains("dashboard"));
+
+        //go to learning center
+        driver.get("https://dev.digisposa.com/learning-center");
+
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[1]/div[2]/a")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("title-post")));
+        driver.findElement(By.id("title-post")).sendKeys("Autotest");
+
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/form/div/div[2]/div[1]/div[1]/div/div[1]/div/label")).click();
+
+        //preview
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/form/div/div[2]/div[2]/button[2]")).click();
+
+        String article = driver.findElement(By.className("article-title")).getText();
+        Assert.assertEquals(article, "AUTOTEST");
+
+        //back to edit and publish
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/button")).click();
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/form/div/div[2]/button")).click();
+
+        //check new post
+        driver.get("https://dev.digisposa.com/learning-center/awaiting");
+        String title = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/table/tbody/tr/td[2]/a")).getText();
+        Assert.assertEquals(title, "Autotest");
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        String loginText = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+        //login as admin
+
+        driver.get("https://dev.digisposa.com/auth/login");
+
+        driver.findElement(By.id("loginform-email")).sendKeys("sposadigi@gmail.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        driver.findElement(By.name("login-button")).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text2 = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text2.toLowerCase().contains("dashboard"));
+
+        driver.get("https://dev.digisposa.com/admin/blog/user-awaiting");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/div[2]/div/div/table/tbody/tr/td[2]/a")));
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/div[2]/div/div/table/tbody/tr/td[2]/a")).getText();
+        Assert.assertEquals(title, "Autotest");
+
+        //confirm
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/div[2]/div/div/table/tbody/tr/td[6]/div/button[2]")).click();
+        Thread.sleep(2000);
+        String confirmed = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/div[2]/div/div/table/tbody/tr/td[6]/div/button")).getText();
+        Assert.assertEquals(confirmed, "CONFIRMED");
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+        //login as brand
+        driver.get("https://dev.digisposa.com/auth/login");
+        driver.findElement(By.id("loginform-email")).sendKeys("loon_vader@mailinator.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element2 = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element2);
+        driver.findElement(By.name("login-button")).click();
+
+        //check if we on loggedin
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        Assert.assertTrue(text.toLowerCase().contains("dashboard"));
+
+        //publish
+        driver.get("https://dev.digisposa.com/learning-center/awaiting");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/table/tbody/tr/td[2]/a")));
+        String post_title = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/table/tbody/tr/td[2]/a")).getText();
+        Assert.assertEquals(post_title, "Autotest");
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/table/tbody/tr/td[6]/button")).click();
+        Thread.sleep(5000);
+
+        //check in blog
+        driver.get("https://dev.digisposa.com/blog");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("article-title")));
+        String title_text = driver.findElement(By.className("article-title")).getText();
+        Assert.assertEquals(title_text, "AUTOTEST");
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+        System.out.println("===> TEST 10: PASSED");
+        System.out.println(" ");
+    }
+
+    @Test
+    public void Test11_hide_post_as_admin() {
+
+        System.out.println("===> TEST 11: HIDE POST AS ADMIN");
+
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
+        //login as admin
+
+        driver.get("https://dev.digisposa.com/auth/login");
+
+        driver.findElement(By.id("loginform-email")).sendKeys("sposadigi@gmail.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        driver.findElement(By.name("login-button")).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text.toLowerCase().contains("dashboard"));
+
+        driver.get("https://dev.digisposa.com/admin/blog/user-published");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/div[2]/div/div/table/tbody/tr/td[2]/a")));
+        String check_title = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/div[2]/div/div/table/tbody/tr/td[2]/a")).getText();
+        Assert.assertEquals(check_title, "Autotest");
+
+        //hide post
+        driver.findElement(By.className("fa-eye")).click();
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        String loginText = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+        //login as brand
+        driver.get("https://dev.digisposa.com/auth/login");
+        driver.findElement(By.id("loginform-email")).sendKeys("loon_vader@mailinator.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element1 = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element1);
+        driver.findElement(By.name("login-button")).click();
+
+        //check if we on loggedin
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text2 = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text2.toLowerCase().contains("dashboard"));
+
+        //check if hidden
+        driver.get("https://dev.digisposa.com/learning-center");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("fa-eye")));
+        driver.findElement(By.className("fa-eye"));
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+        System.out.println("===> TEST 11: PASSED");
+        System.out.println(" ");
+
+    }
+
+    @Test
+    public void Test12_delete_post_as_admin() throws InterruptedException {
+        System.out.println("===> TEST 12: DELETE POST AS ADMIN");
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
+        //login as admin
+
+        driver.get("https://dev.digisposa.com/auth/login");
+
+        driver.findElement(By.id("loginform-email")).sendKeys("sposadigi@gmail.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        driver.findElement(By.name("login-button")).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text.toLowerCase().contains("dashboard"));
+
+        //go to post
+        driver.get("https://dev.digisposa.com/admin/blog/user-published");
+
+        //check post
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/div[2]/div/div/table/tbody/tr/td[2]/a")));
+        String check_title = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/div[2]/div/div/table/tbody/tr/td[2]/a")).getText();
+        Assert.assertEquals(check_title, "Autotest");
+
+        //delete
+        driver.findElement(By.className("my-icon-delete")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[4]/div/div[3]/button[1]")));
+        driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
+
+        //check if deleted
+        Thread.sleep(3000);
+        String no_post = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div[2]/div[2]/div/div/table/tbody/tr/td")).getText();
+        Assert.assertEquals(no_post, "No posts");
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        String loginText = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+        //login as brand
+        driver.get("https://dev.digisposa.com/auth/login");
+        driver.findElement(By.id("loginform-email")).sendKeys("loon_vader@mailinator.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element1 = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element1);
+        driver.findElement(By.name("login-button")).click();
+
+        //check if we on loggedin
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text2 = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text2.toLowerCase().contains("dashboard"));
+
+        //check if deleted
+        driver.get("https://dev.digisposa.com/learning-center");
+        String post_check = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[2]/table/tbody/tr/td/div")).getText();
+        Assert.assertEquals(post_check, "No items");
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        //String loginText = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+
+        System.out.println("===> TEST 12: PASSED");
+        System.out.println(" ");
+    }
+
     @AfterClass
     public void tearDown() {
         driver.quit();
