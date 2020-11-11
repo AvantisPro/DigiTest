@@ -128,7 +128,6 @@ public class Brand2 {
         //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("card-title")));
         Thread.sleep(5000);
         String name = driver.findElement(By.className("card-title")).getText();
-        System.out.println(name);
         Assert.assertTrue(name.toLowerCase().contains("sadoni bridal boutique norway, oslo"));
         System.out.println("===> TEST 05: PASSED");
         System.out.println(" ");
@@ -330,6 +329,124 @@ public class Brand2 {
         System.out.println("===> TEST 11: PASSED");
         System.out.println(" ");
     }
+
+    @Test
+    public void Test12_share_retailer_with_colleague() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
+        System.out.println("===> TEST 12: SHARE RETAILER WITH COLLEAGUE");
+
+        driver.get("https://dev.digisposa.com/retailer/19");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("my-icon-share")));
+        driver.findElement(By.className("my-icon-share")).click();
+        //share
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__BVID__19___BV_modal_body_\"]/div/div[1]/div/div/div")));
+        driver.findElement(By.xpath("//*[@id=\"__BVID__19___BV_modal_body_\"]/div/div[1]/div/div/div")).click();
+        //choose user
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__BVID__19___BV_modal_body_\"]/div/div[1]/div/div/div[1]/div")));
+        driver.findElement(By.xpath("//*[@id=\"__BVID__19___BV_modal_body_\"]/div/div[1]/div/div/div[1]/div")).click();
+        //send
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__BVID__19___BV_modal_body_\"]/div/div[3]/div/div[1]/button")));
+        driver.findElement(By.xpath("//*[@id=\"__BVID__19___BV_modal_body_\"]/div/div[3]/div/div[1]/button")).click();
+        Thread.sleep(3000);
+        //check in messages
+        driver.get("https://dev.digisposa.com/message-center");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[1]/ul/li[2]/a")));
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[1]/ul/li[2]/a")).click();
+        //choose user
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[2]/div[1]/div/h5")));
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[2]/div[1]/div/h5")).click();
+        //choose message
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("mc-message-text")));
+        String retailer = driver.findElement(By.className("mc-message-text")).getText();
+        Assert.assertEquals(retailer, "http://dev.digisposa.com/retailer/19");
+        //delete chat
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("mc-delete-chat")));
+        driver.findElement(By.className("mc-delete-chat")).click();
+        //confirm
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"swal2-title\"]")));
+        String text = driver.findElement(By.xpath("//*[@id=\"swal2-title\"]")).getText();
+        Assert.assertEquals(text, "Delete Chat");
+
+        driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
+        Thread.sleep(5000);
+        //check if deleted
+        String empty_title = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[2]/div/div[2]/div[1]/div[1]/div/span")).getText();
+        Assert.assertEquals(empty_title, "Start you messaging");
+    }
+
+    @Test
+    public void Test13_send_request_to_retailer_and_cancel_it() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
+        System.out.println("===> TEST 13: SEND REQUEST TO RETAILER AND ACCEPT IT");
+
+        driver.get("https://dev.digisposa.com/retailer/16");
+        //send request
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button")));
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button")).click();
+        //check
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/span")));
+        String request_sent = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/span")).getText();
+        Assert.assertEquals(request_sent, "WAITING FOR CONFIRMATION");
+        //check in waiting for connect
+        driver.get("https://dev.digisposa.com/retailer");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("__BVID__19___BV_tab_button__")));
+        driver.findElement(By.id("__BVID__19___BV_tab_button__")).click();
+        //check title
+        String retailer = driver.findElement(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4")).getText();
+        Assert.assertEquals(retailer, "IGLOO USA, TAMPA");
+        //cancel request
+        driver.findElement(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[2]/button")).click();
+        Thread.sleep(3000);
+        //check if canceled
+        driver.get("https://dev.digisposa.com/retailer/16");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button")));
+        String req_con = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button")).getText();
+        Assert.assertEquals(req_con, "REQUEST CONNECTION");
+
+        System.out.println("===> TEST 13: PASSED");
+        System.out.println(" ");
+    }
+
+    @Test
+    public void Test14_search_order_in_orders() {
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
+        System.out.println("===> TEST 14: SEARCH ORDER IN ORDERS");
+
+        driver.get("https://dev.digisposa.com/order");
+
+        driver.findElement(By.xpath("//*[@id=\"orders\"]/div/div[1]/div/div[1]/div[1]/input")).sendKeys("374");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"orders\"]/div/div[2]/div/div/div/div/div/div/div/div/div[1]/h4")));
+
+        String OrderNumb = driver.findElement(By.xpath("//*[@id=\"orders\"]/div/div[2]/div/div/div/div/div/div/div/div/div[1]/h4")).getText();
+
+        Assert.assertEquals(OrderNumb, "#0000000374");
+
+        System.out.println("===> TEST 14: PASSED");
+        System.out.println(" ");
+    }
+
+    @Test
+    public void Test15_search_order_in_invoices() {
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+
+        System.out.println("===> TEST 14: SEARCH ORDER IN INVOICES");
+
+        driver.get("https://dev.digisposa.com/finances");
+
+        driver.findElement(By.xpath("//*[@id=\"invoices\"]/div/div[1]/div/div[1]/div[1]/input")).sendKeys("1605003877");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"invoices\"]/div/div[2]/div/div/div/div/div/div/div/div[1]/h4")));
+
+        String OrderNumb = driver.findElement(By.xpath("//*[@id=\"invoices\"]/div/div[2]/div/div/div/div/div/div/div/div[1]/h4")).getText();
+
+        Assert.assertEquals(OrderNumb, "#1605003877");
+
+        System.out.println("===> TEST 14: PASSED");
+        System.out.println(" ");
+    }
+
 
     @AfterClass
     public void tearDown() {
