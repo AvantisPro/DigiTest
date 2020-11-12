@@ -52,6 +52,7 @@ public class Buy_flow {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
         //Login as Retailer H&M
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loginform-email")));
         driver.findElement(By.id("loginform-email")).sendKeys("loon_test2@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
         WebElement element = driver.findElement(By.name("login-button"));
@@ -138,6 +139,7 @@ public class Buy_flow {
         //Login as Brand "Rock"
         driver.get("https://dev.digisposa.com/auth/login");
         driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("LoginForm[email]")));
         driver.findElement(By.name("LoginForm[email]")).sendKeys("loon_vader@mailinator.com");
         driver.findElement(By.name("LoginForm[password]")).sendKeys("12345678");
         WebElement element1 = driver.findElement(By.name("login-button"));
@@ -207,6 +209,7 @@ public class Buy_flow {
 
         driver.get("https://dev.digisposa.com/auth/login");
         driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loginform-email")));
         driver.findElement(By.id("loginform-email")).sendKeys("loon_test2@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
         WebElement element2 = driver.findElement(By.name("login-button"));
@@ -343,6 +346,7 @@ public class Buy_flow {
 
         driver.get("https://dev.digisposa.com/auth/login");
         driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loginform-email")));
         driver.findElement(By.id("loginform-email")).sendKeys("loon_test2@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
         WebElement element2 = driver.findElement(By.name("login-button"));
