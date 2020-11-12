@@ -360,6 +360,7 @@ public class Buy_flow {
         driver.manage().window().setSize(new Dimension(414, 736));
         driver.navigate().refresh();
         Thread.sleep(2000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("card-img-top")));
 
         WebElement card = driver.findElement(By.className("card-img-top"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", card);
@@ -398,6 +399,7 @@ public class Buy_flow {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
         //Login as Retailer H&M
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loginform-email")));
         driver.findElement(By.id("loginform-email")).sendKeys("loon_test2@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
         WebElement element = driver.findElement(By.name("login-button"));
