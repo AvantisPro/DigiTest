@@ -21,8 +21,6 @@ public class Admin_panel2 {
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             .build();
 
-    //
-    //
     @BeforeClass
     public void init() throws IOException {
         System.out.println(" ");
@@ -32,8 +30,6 @@ public class Admin_panel2 {
         driver.get("https://dev.digisposa.com/auth/login");
     }
 
-
-    //
     @Test
     public void Test01_send_request_as_brand() {
 
