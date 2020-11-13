@@ -37,7 +37,7 @@ public class Admin_panel2 {
 
         System.out.println(" ");
         System.out.println("======================================");
-        System.out.println("===> ADMIN USER TESTS <===");
+        System.out.println("===> ADMIN USER TESTS 12 <===");
         System.out.println("======================================");
         System.out.println(" ");
 
