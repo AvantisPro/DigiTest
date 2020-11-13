@@ -450,6 +450,298 @@ public class Brand2 {
         System.out.println(" ");
     }
 
+    @Test
+    public void Test16_check_recent_orders() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+        System.out.println("===> TEST 16: CHECK RECENT ORDERS");
+
+        driver.get("https://dev.digisposa.com/dashboard");
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+
+        //Sort by oldest
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[3]/div[1]/div[2]/div/div[1]/div/div/div[2]/div/button")).click();
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[3]/div[1]/div[2]/div/div[1]/div/div/div[2]/div/div/span[2]")).click();
+        Thread.sleep(2000);
+
+        //click on card
+        WebElement element = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[3]/div[2]/div/div/div[1]/div/img"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[3]/div[2]/div/div/div[1]/div/img")).click();
+        Thread.sleep(1000);
+        String order_numb = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div[3]/div[2]/div/div/div[1]/div/div/div[2]/div[2]/div")).getText();
+        Assert.assertEquals(order_numb, "0000000289");
+
+        driver.manage().window().maximize();
+        driver.navigate().refresh();
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        String loginText = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+
+        System.out.println("===> TEST 16: PASSED");
+        System.out.println(" ");
+
+    }
+
+    @Test
+    public void Test17_add_retailer_and_delete_him() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+        System.out.println("===> TEST 17: ADD RETAILER AND DELETE HIM");
+
+        //login
+        driver.findElement(By.id("loginform-email")).sendKeys("loon_7@mailinator.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        driver.findElement(By.name("login-button")).click();
+
+        //check if we on loggedin
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text.toLowerCase().contains("dashboard"));
+
+        //go to retailer
+        driver.get("https://dev.digisposa.com/retailer/16");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button")));
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button")).click();
+
+        //check
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/span")));
+        String waiting_for_confirm = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/span")).getText();
+        Assert.assertEquals(waiting_for_confirm, "WAITING FOR CONFIRMATION");
+
+        //check in my retailers
+        driver.get("https://dev.digisposa.com/retailer");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("__BVID__19___BV_tab_button__")));
+        driver.findElement(By.id("__BVID__19___BV_tab_button__")).click();
+
+        //check title
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4")));
+        String retailers_name = driver.findElement(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4")).getText();
+        Assert.assertEquals(retailers_name, "IGLOO USA, TAMPA");
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        String loginText = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+        //login as retailer
+        driver.findElement(By.id("loginform-email")).sendKeys("loon_4@mailinator.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element2 = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element2);
+        driver.findElement(By.name("login-button")).click();
+
+        //check if we on loggedin
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text2 = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text2.toLowerCase().contains("dashboard"));
+
+        //go to brands
+        driver.get("https://dev.digisposa.com/brand");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("__BVID__22___BV_tab_button__")));
+        driver.findElement(By.id("__BVID__22___BV_tab_button__")).click();
+
+        //confirm
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__BVID__22\"]/div/div/div/div[2]/div[1]/button[1]")));
+        driver.findElement(By.xpath("//*[@id=\"__BVID__22\"]/div/div/div/div[2]/div[1]/button[1]")).click();
+        Thread.sleep(5000);
+        driver.navigate().refresh();
+
+        //check if connected
+        driver.get("https://dev.digisposa.com/brand/18/collection/72");
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        String loginText2 = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(loginText2.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+
+        //login as brand
+        driver.findElement(By.id("loginform-email")).sendKeys("loon_7@mailinator.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element3 = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element3);
+        driver.findElement(By.name("login-button")).click();
+
+        //check if we on loggedin
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text3 = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text3.toLowerCase().contains("dashboard"));
+
+        //delete added retailer
+        driver.get("https://dev.digisposa.com/retailer");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("my-icon-delete")));
+        driver.findElement(By.className("my-icon-delete")).click();
+
+        //confirm
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[4]/div/div[3]/button[1]")));
+        driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
+
+        //confirm again
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[4]/div/div[3]/button[1]")));
+        driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
+
+        //check if deleted
+        driver.get("https://dev.digisposa.com/retailer/16");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button")));
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button"));
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        String loginText3 = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(loginText3.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+        System.out.println("===> TEST 17: PASSED");
+        System.out.println(" ");
+    }
+
+    @Test
+    public void Test18_add_retailer_and_delete_brand_as_retailer() throws InterruptedException {
+
+        WebDriverWait wait = new WebDriverWait(driver, 60);
+        System.out.println("===> TEST 18: ADD RETAILER AND DELETE BRAND AS RETAILER");
+
+        //login
+        driver.get("https://dev.digisposa.com/auth/login");
+        driver.findElement(By.id("loginform-email")).sendKeys("loon_7@mailinator.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        driver.findElement(By.name("login-button")).click();
+
+        //check if we on loggedin
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text.toLowerCase().contains("dashboard"));
+
+        //go to retailer
+        driver.get("https://dev.digisposa.com/retailer/16");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button")));
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button")).click();
+
+        //check
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/span")));
+        String waiting_for_confirm = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/span")).getText();
+        Assert.assertEquals(waiting_for_confirm, "WAITING FOR CONFIRMATION");
+
+        //check in my retailers
+        driver.get("https://dev.digisposa.com/retailer");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("__BVID__19___BV_tab_button__")));
+        driver.findElement(By.id("__BVID__19___BV_tab_button__")).click();
+
+        //check title
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4")));
+        String retailers_name = driver.findElement(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4")).getText();
+        Assert.assertEquals(retailers_name, "IGLOO USA, TAMPA");
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        String loginText = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(loginText.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+        //login as retailer
+        driver.get("https://dev.digisposa.com/auth/login");
+        driver.findElement(By.id("loginform-email")).sendKeys("loon_4@mailinator.com");
+        driver.findElement(By.id("loginform-password")).sendKeys("12345678");
+        WebElement element2 = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element2);
+        driver.findElement(By.name("login-button")).click();
+
+        //check if we on loggedin
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-auto")));
+        String text2 = driver.findElement(By.className("col-auto")).getText();
+        Assert.assertTrue(text2.toLowerCase().contains("dashboard"));
+
+        //go to brands
+        driver.get("https://dev.digisposa.com/brand");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("__BVID__22___BV_tab_button__")));
+        driver.findElement(By.id("__BVID__22___BV_tab_button__")).click();
+
+        //confirm
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__BVID__22\"]/div/div/div/div[2]/div[1]/button[1]")));
+        driver.findElement(By.xpath("//*[@id=\"__BVID__22\"]/div/div/div/div[2]/div[1]/button[1]")).click();
+        Thread.sleep(5000);
+        driver.navigate().refresh();
+
+        //delete brand
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("my-icon-delete")));
+        driver.findElement(By.className("my-icon-delete")).click();
+
+        //confirm
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[4]/div/div[3]/button[1]")));
+        driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
+
+        //confirm again
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div[4]/div/div[3]/button[1]")));
+        driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
+
+        //check if deleted
+        driver.get("https://dev.digisposa.com/brand/18");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button")));
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button"));
+
+        //logout
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
+
+        driver.findElement(By.id("profile-dropdown")).click();
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
+        String loginText2 = driver.findElement(By.className("section__title")).getText();
+        Assert.assertTrue(loginText2.toLowerCase().contains("login"));
+        driver.manage().window().maximize();
+
+        System.out.println("===> TEST 18: PASSED");
+        System.out.println(" ");
+    }
+
 
     @AfterClass
     public void tearDown() {
