@@ -21,6 +21,7 @@ public class Admin_panel2 {
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             .build();
 
+    //
     @BeforeClass
     public void init() throws IOException {
         System.out.println(" ");
