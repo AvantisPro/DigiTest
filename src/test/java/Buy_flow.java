@@ -39,7 +39,7 @@ public class Buy_flow {
     @Test
     public void Test01_login_as_Retailer_and_buy_dress() throws InterruptedException {
 
-        System.out.println(" ");
+        System.out.println(" 1340 ");
         System.out.println("======================================");
         System.out.println("===> BUY FLOW 7 TESTS <===");
         System.out.println("======================================");

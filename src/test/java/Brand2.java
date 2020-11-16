@@ -34,7 +34,7 @@ public class Brand2 {
 
     @Test
     public void Test01_check_login_page(){
-        System.out.println(" 1323 ");
+        System.out.println(" 1340 ");
         System.out.println("======================================");
         System.out.println("===> BRAND USER 18 TESTS <===");
         System.out.println("======================================");

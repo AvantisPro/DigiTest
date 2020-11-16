@@ -32,7 +32,7 @@ public class Admin_panel2 {
     @Test
     public void Test01_send_request_as_brand() {
 
-        System.out.println(" ");
+        System.out.println("1340");
         System.out.println("======================================");
         System.out.println("===> ADMIN USER 12 TESTS <===");
         System.out.println("======================================");
