@@ -21,7 +21,9 @@ public class Brand2 {
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             .build();
 
+
     //
+
     @BeforeClass
     public void Init() throws IOException {
         service.start();
@@ -406,11 +408,16 @@ public class Brand2 {
 
         //check in waiting for connect
         driver.get("https://dev.digisposa.com/retailer");
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("__BVID__19___BV_tab_button__")));
         driver.findElement(By.id("__BVID__19___BV_tab_button__")).click();
 
         //check title
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4")));
+        WebElement element = driver.findElement(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4")));
         String retailer = driver.findElement(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4")).getText();
         Assert.assertEquals(retailer, "IGLOO USA, TAMPA");
 
