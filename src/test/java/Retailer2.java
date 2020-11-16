@@ -285,6 +285,7 @@ public class Retailer2 {
 
         driver.get("https://dev.digisposa.com/order");
 
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"orders\"]/div/div[1]/div/div[1]/div[1]/input")));
         driver.findElement(By.xpath("//*[@id=\"orders\"]/div/div[1]/div/div[1]/div[1]/input")).sendKeys("281");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"orders\"]/div/div[2]/div/div/div/div/div/div/div/div/div[1]/h4")));
 
