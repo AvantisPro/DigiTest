@@ -23,7 +23,6 @@ public class Admin_panel2 {
 //
     @BeforeClass
     public void init() throws IOException {
-        System.out.println(" ");
         service.start();
         driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
         driver.manage().window().maximize();

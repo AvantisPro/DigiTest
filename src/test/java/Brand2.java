@@ -25,6 +25,7 @@ public class Brand2 {
     public void Init() throws IOException {
         service.start();
         driver = new RemoteWebDriver(service.getUrl(), new ChromeOptions());
+        driver.manage().window().maximize();
         driver.get("https://dev.digisposa.com/auth/login");
     }
 
