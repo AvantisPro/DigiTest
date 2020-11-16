@@ -21,9 +21,6 @@ public class Brand2 {
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             .build();
 
-    //
-
-    //
     @BeforeClass
     public void Init() throws IOException {
         service.start();

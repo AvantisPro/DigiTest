@@ -23,7 +23,6 @@ public class Buy_flow {
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             .build();
 
-
     String priceForDress = "5000";
     String priceForDressWithDelivery = "5150";
 

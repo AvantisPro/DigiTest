@@ -20,6 +20,7 @@ public class Retailer2 {
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             .build();
 
+
     @BeforeClass
     public void init() throws IOException {
         service.start();
