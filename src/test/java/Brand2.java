@@ -426,6 +426,9 @@ public class Brand2 {
         driver.findElement(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[2]/button")).click();
         Thread.sleep(3000);
 
+        driver.manage().window().maximize();
+        driver.navigate().refresh();
+
         //check if canceled
         driver.get("https://dev.digisposa.com/retailer/16");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button")));
@@ -546,15 +549,20 @@ public class Brand2 {
         String waiting_for_confirm = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/span")).getText();
         Assert.assertEquals(waiting_for_confirm, "WAITING FOR CONFIRMATION");
 
-        //check in my retailers
+        //check in waiting for connect
         driver.get("https://dev.digisposa.com/retailer");
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("__BVID__19___BV_tab_button__")));
         driver.findElement(By.id("__BVID__19___BV_tab_button__")).click();
 
         //check title
+        WebElement element2 = driver.findElement(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element2);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4")));
-        String retailers_name = driver.findElement(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4")).getText();
-        Assert.assertEquals(retailers_name, "IGLOO USA, TAMPA");
+        String retailer = driver.findElement(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4")).getText();
+        Assert.assertEquals(retailer, "IGLOO USA, TAMPA");
 
         //logout
         driver.manage().window().setPosition(new Point(0, 0));
@@ -572,8 +580,8 @@ public class Brand2 {
         //login as retailer
         driver.findElement(By.id("loginform-email")).sendKeys("loon_4@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
-        WebElement element2 = driver.findElement(By.name("login-button"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element2);
+        WebElement element3 = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element3);
         driver.findElement(By.name("login-button")).click();
 
         //check if we on loggedin
@@ -612,8 +620,8 @@ public class Brand2 {
         //login as brand
         driver.findElement(By.id("loginform-email")).sendKeys("loon_7@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
-        WebElement element3 = driver.findElement(By.name("login-button"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element3);
+        WebElement element4 = driver.findElement(By.name("login-button"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element4);
         driver.findElement(By.name("login-button")).click();
 
         //check if we on loggedin
