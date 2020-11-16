@@ -33,7 +33,7 @@ public class Brand2 {
     public void Test01_check_login_page(){
         System.out.println(" ");
         System.out.println("======================================");
-        System.out.println("===> BRAND USER TESTS <===");
+        System.out.println("===> BRAND USER 18 TESTS <===");
         System.out.println("======================================");
         System.out.println(" ");
 

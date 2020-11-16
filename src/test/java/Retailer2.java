@@ -35,7 +35,7 @@ public class Retailer2 {
 
         System.out.println(" ");
         System.out.println("======================================");
-        System.out.println("===> RETAILER USER TESTS <===");
+        System.out.println("===> RETAILER USER 13 TESTS <===");
         System.out.println("======================================");
         System.out.println(" ");
 

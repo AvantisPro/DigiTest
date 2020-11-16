@@ -41,7 +41,7 @@ public class Buy_flow {
 
         System.out.println(" ");
         System.out.println("======================================");
-        System.out.println("===> BUY FLOW TESTS <===");
+        System.out.println("===> BUY FLOW 7 TESTS <===");
         System.out.println("======================================");
         System.out.println(" ");
 
