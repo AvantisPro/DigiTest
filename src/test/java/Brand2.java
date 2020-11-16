@@ -396,6 +396,7 @@ public class Brand2 {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("__BVID__19___BV_tab_button__")));
         driver.findElement(By.id("__BVID__19___BV_tab_button__")).click();
         //check title
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4")));
         String retailer = driver.findElement(By.xpath("//*[@id=\"__BVID__19\"]/div/div/div/div[1]/h4")).getText();
         Assert.assertEquals(retailer, "IGLOO USA, TAMPA");
         //cancel request

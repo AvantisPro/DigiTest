@@ -669,11 +669,14 @@ public class Buy_flow {
         driver.navigate().refresh();
 
         //logout
-        driver.get("https://dev.digisposa.com/dashboard");
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
-        driver.findElement(By.className("text-center")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("section__title")));
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
         String loginText2 = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText2.toLowerCase().contains("login"));
         driver.manage().window().maximize();
