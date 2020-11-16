@@ -20,7 +20,8 @@ public class Admin_panel2 {
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             .build();
-//
+
+    //
     @BeforeClass
     public void init() throws IOException {
         service.start();
