@@ -32,7 +32,7 @@ public class Retailer2 {
     @Test
     public void Test01_check_login_page(){
 
-        System.out.println("1440");
+        System.out.println("1636");
         System.out.println("======================================");
         System.out.println("===> RETAILER USER 13 TESTS <===");
         System.out.println("======================================");

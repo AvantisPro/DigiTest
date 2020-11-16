@@ -21,7 +21,7 @@ public class Admin_panel2 {
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             .build();
     
-    
+
     @BeforeClass
     public void init() throws IOException {
         service.start();
@@ -33,7 +33,7 @@ public class Admin_panel2 {
     @Test
     public void Test01_send_request_as_brand() {
 
-        System.out.println("1440");
+        System.out.println("1636");
         System.out.println("======================================");
         System.out.println("===> ADMIN USER 12 TESTS <===");
         System.out.println("======================================");
