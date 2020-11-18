@@ -38,9 +38,9 @@ public class Buy_flow {
     @Test
     public void Test01_login_as_Retailer_and_buy_dress() throws InterruptedException {
 
-        System.out.println(" 1636 ");
+        System.out.println(" ");
         System.out.println("======================================");
-        System.out.println("===> BUY FLOW 7 TESTS <===");
+        System.out.println("===> BUY FLOW TESTS <===");
         System.out.println("======================================");
         System.out.println(" ");
 
@@ -49,7 +49,6 @@ public class Buy_flow {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
         //Login as Retailer H&M
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loginform-email")));
         driver.findElement(By.id("loginform-email")).sendKeys("loon_test2@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
         WebElement element = driver.findElement(By.name("login-button"));
@@ -82,9 +81,9 @@ public class Buy_flow {
         Assert.assertEquals(priceInCard, priceForDress);
 
 
-        driver.findElement(By.id("delivery_date")).click();
+        driver.findElement(By.xpath("//*[@id=\"delivery_date\"]/button")).click();
         driver.findElement(By.id("__BVID__29__cell-2020-11-30_")).click();
-        driver.findElement(By.id("delivery_date")).click();
+        driver.findElement(By.xpath("//*[@id=\"delivery_date\"]/button")).click();
 
         driver.findElement(By.className("w-100")).click();
         Thread.sleep(5000);
@@ -116,11 +115,13 @@ public class Buy_flow {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
+        Thread.sleep(3000);
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
 
         String loginText = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         System.out.println("===> TEST 01: PASSED");
         System.out.println(" ");
@@ -136,7 +137,6 @@ public class Buy_flow {
         //Login as Brand "Rock"
         driver.get("https://dev.digisposa.com/auth/login");
         driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("LoginForm[email]")));
         driver.findElement(By.name("LoginForm[email]")).sendKeys("loon_vader@mailinator.com");
         driver.findElement(By.name("LoginForm[password]")).sendKeys("12345678");
         WebElement element1 = driver.findElement(By.name("login-button"));
@@ -182,14 +182,19 @@ public class Buy_flow {
         driver.navigate().refresh();
 
         //logout
-        driver.get("https://dev.digisposa.com/dashboard");
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
-        driver.findElement(By.className("text-center")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("section__title")));
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
         String loginText = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         System.out.println("===> TEST 02: PASSED");
         System.out.println(" ");
@@ -206,7 +211,6 @@ public class Buy_flow {
 
         driver.get("https://dev.digisposa.com/auth/login");
         driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loginform-email")));
         driver.findElement(By.id("loginform-email")).sendKeys("loon_test2@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
         WebElement element2 = driver.findElement(By.name("login-button"));
@@ -235,14 +239,19 @@ public class Buy_flow {
         Thread.sleep(3000);
 
         //logout
-        driver.get("https://dev.digisposa.com/dashboard");
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
+        Thread.sleep(3000);
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("section__title")));
+
         String loginText = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         System.out.println("===> TEST 03: PASSED");
         System.out.println(" ");
@@ -258,7 +267,6 @@ public class Buy_flow {
         //enter
         driver.get("https://dev.digisposa.com/auth/login");
         driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("LoginForm[email]")));
         driver.findElement(By.name("LoginForm[email]")).sendKeys("loon_vader@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
         WebElement element2 = driver.findElement(By.name("login-button"));
@@ -305,10 +313,12 @@ public class Buy_flow {
         WebElement rightBtn = btns.get(btns.size() - 1);
         rightBtn.click();
 
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("col-sm-8")));
         driver.findElement(By.className("col-sm-8")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("form-group")));
         List<WebElement> rb = driver.findElements(By.className("form-group"));
         WebElement rb1 = rb.get(1);
+        rb1.click();
         rb1.click();
 
         driver.findElement(By.className("col-sm-7")).click();
@@ -321,13 +331,16 @@ public class Buy_flow {
         driver.manage().window().setPosition(new Point(0, 0));
         driver.manage().window().setSize(new Dimension(414, 736));
         driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
         Thread.sleep(3000);
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form")).click();
+
         String loginText = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         System.out.println("===> TEST 04: PASSED");
         System.out.println(" ");
@@ -343,7 +356,6 @@ public class Buy_flow {
 
         driver.get("https://dev.digisposa.com/auth/login");
         driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loginform-email")));
         driver.findElement(By.id("loginform-email")).sendKeys("loon_test2@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
         WebElement element2 = driver.findElement(By.name("login-button"));
@@ -356,8 +368,7 @@ public class Buy_flow {
         driver.manage().window().setPosition(new Point(0, 0));
         driver.manage().window().setSize(new Dimension(414, 736));
         driver.navigate().refresh();
-        Thread.sleep(2000);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("card-img-top")));
+        Thread.sleep(5000);
 
         WebElement card = driver.findElement(By.className("card-img-top"));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", card);
@@ -374,18 +385,22 @@ public class Buy_flow {
         Thread.sleep(5000);
 
         //logout
-        driver.get("https://dev.digisposa.com/dashboard");
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
         Thread.sleep(3000);
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
         String loginText = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         System.out.println("===> TEST 05: PASSED");
         System.out.println(" ");
-
     }
 
     @Test
@@ -396,7 +411,6 @@ public class Buy_flow {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
         //Login as Retailer H&M
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("loginform-email")));
         driver.findElement(By.id("loginform-email")).sendKeys("loon_test2@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
         WebElement element = driver.findElement(By.name("login-button"));
@@ -463,11 +477,13 @@ public class Buy_flow {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
+        Thread.sleep(3000);
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
 
         String loginText = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         //Login as Brand "Rock"
         driver.get("https://dev.digisposa.com/auth/login");
@@ -521,14 +537,19 @@ public class Buy_flow {
         Assert.assertEquals(rejected_order, "#" + orderNumb);
 
         //logout
-        driver.get("https://dev.digisposa.com/dashboard");
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
         Thread.sleep(3000);
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
         String loginText2 = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText2.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         System.out.println("===> TEST 06: PASSED");
         System.out.println(" ");
@@ -537,7 +558,7 @@ public class Buy_flow {
 
     @Test
     public void Test07_change_address_in_order_and_decline_it_as_retailer() throws InterruptedException {
-        System.out.println("===> TEST 07: CHANGE ADDRESS IN ORDER AS BRAND AND DECLINE ORDER AS RETAILER");
+        System.out.println("===> TEST 07: CHANGE ADDRESS IN ORDER AND DECLINE IT AS RETAILER");
 
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
@@ -608,11 +629,13 @@ public class Buy_flow {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
+        Thread.sleep(3000);
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
 
         String loginText = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         //Login as Brand "Rock"
         driver.get("https://dev.digisposa.com/auth/login");
@@ -674,14 +697,17 @@ public class Buy_flow {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
+        Thread.sleep(3000);
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
 
         String loginText2 = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText2.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         //login as retail
         driver.get("https://dev.digisposa.com/auth/login");
+        driver.navigate().refresh();
         driver.findElement(By.id("loginform-email")).sendKeys("loon_test2@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
         WebElement element2 = driver.findElement(By.name("login-button"));
@@ -741,11 +767,13 @@ public class Buy_flow {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
+        Thread.sleep(3000);
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
 
         String loginText3 = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText3.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         //Login as Brand "Rock"
         driver.get("https://dev.digisposa.com/auth/login");
@@ -768,14 +796,19 @@ public class Buy_flow {
         Assert.assertEquals(declined_order_as_brand, declined_order2);
 
         //logout
-        driver.get("https://dev.digisposa.com/dashboard");
+        driver.manage().window().setPosition(new Point(0, 0));
+        driver.manage().window().setSize(new Dimension(414, 736));
+        driver.navigate().refresh();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
-        driver.findElement(By.className("text-center")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("section__title")));
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+
         String loginText4 = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText4.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         System.out.println("===> TEST 07: PASSED");
         System.out.println(" ");

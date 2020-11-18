@@ -32,9 +32,9 @@ public class Retailer2 {
     @Test
     public void Test01_check_login_page(){
 
-        System.out.println("1636");
+        System.out.println(" ");
         System.out.println("======================================");
-        System.out.println("===> RETAILER USER 13 TESTS <===");
+        System.out.println("===> RETAILER USER TESTS <===");
         System.out.println("======================================");
         System.out.println(" ");
 
@@ -279,18 +279,19 @@ public class Retailer2 {
     }
 
     @Test
-    public void Test12_search_order_in_order_management() {
+    public void Test12_search_order_in_order_management() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
         System.out.println("===> TEST 12: SEARCH ORDER IN ORDER MANAGEMENT");
 
         driver.get("https://dev.digisposa.com/order");
+        Thread.sleep(5000);
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"orders\"]/div/div[1]/div/div[1]/div[1]/input")));
         driver.findElement(By.xpath("//*[@id=\"orders\"]/div/div[1]/div/div[1]/div[1]/input")).sendKeys("281");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"orders\"]/div/div[2]/div/div/div/div/div/div/div/div/div[1]/h4")));
+        Thread.sleep(5000);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("card-title")));
 
-        String OrderNumb = driver.findElement(By.xpath("//*[@id=\"orders\"]/div/div[2]/div/div/div/div/div/div/div/div/div[1]/h4")).getText();
+        String OrderNumb = driver.findElement(By.className("card-title")).getText();
 
         Assert.assertEquals(OrderNumb, "#0000000281");
 

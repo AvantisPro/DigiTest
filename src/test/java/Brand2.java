@@ -31,9 +31,9 @@ public class Brand2 {
 
     @Test
     public void Test01_check_login_page(){
-        System.out.println(" 1636 ");
+        System.out.println(" ");
         System.out.println("======================================");
-        System.out.println("===> BRAND USER 18 TESTS <===");
+        System.out.println("===> BRAND USER TESTS <===");
         System.out.println("======================================");
         System.out.println(" ");
 
@@ -66,7 +66,7 @@ public class Brand2 {
     }
 
     @Test
-    public void Test03_createCollection(){
+    public void Test03_createCollection() throws InterruptedException {
 
         System.out.println("===> TEST 03: CREATE COLLECTION");
 
@@ -81,6 +81,48 @@ public class Brand2 {
 
         driver.findElement(By.className("col-8")).click();
 
+        Thread.sleep(1000);
+        driver.findElement(By.id("title")).sendKeys("test");
+        Thread.sleep(1000);
+        driver.findElement(By.id("code")).sendKeys("test");
+        Thread.sleep(1000);
+        driver.findElement(By.id("description")).sendKeys("test");
+        Thread.sleep(1000);
+        //gender
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/form/div[2]/div/div[5]/div[1]/div/div/div[1]/label")).click();
+        //product
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/form/div[2]/div/div[5]/div[2]/div/div/div[1]/label")).click();
+        //silhouette
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/form/div[2]/div/div[5]/div[3]/div/div/div/div[1]/label")).click();
+        //style
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/form/div[2]/div/div[5]/div[5]/div/div/div/div[1]/label")).click();
+        //price
+        driver.findElement(By.id("recommended_price_eur")).sendKeys("5000");
+        //sizes
+        //from
+        driver.findElement(By.id("regular_sizes_from")).clear();
+        driver.findElement(By.id("regular_sizes_from")).sendKeys("34");
+        //to
+        driver.findElement(By.id("regular_sizes_to")).clear();
+        driver.findElement(By.id("regular_sizes_to")).sendKeys("44");
+        //step
+        driver.findElement(By.id("regular_size_step")).clear();
+        driver.findElement(By.id("regular_size_step")).sendKeys("4");
+
+        //plus sizes
+        //from
+        driver.findElement(By.id("plus_sizes_from")).clear();
+        driver.findElement(By.id("plus_sizes_from")).sendKeys("34");
+        //to
+        driver.findElement(By.id("plus_sizes_to")).clear();
+        driver.findElement(By.id("plus_sizes_to")).sendKeys("44");
+        //step
+        driver.findElement(By.id("plus_size_step")).clear();
+        driver.findElement(By.id("plus_size_step")).sendKeys("4");
+
+        //size chart
+        driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/form/div[2]/div/div[8]/div/div/div/div/div[1]/label")).click();
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("finish-btn"))).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/form/div[1]/div/div[2]/div/div/div[1]/a"))).click();
 
@@ -91,7 +133,7 @@ public class Brand2 {
 
         String text = lastCollection.getText();
 
-        Assert.assertTrue(text.toLowerCase().contains("0 items"));
+        Assert.assertEquals(text, "0 items");
 
         driver.manage().window().setSize(new Dimension(414, 736));
         driver.manage().window().setPosition(new Point(0, 0));
@@ -127,8 +169,9 @@ public class Brand2 {
         //wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("card-title")));
         Thread.sleep(5000);
         String name = driver.findElement(By.className("card-title")).getText();
+        System.out.println(name);
         Assert.assertTrue(name.toLowerCase().contains("sadoni bridal boutique norway, oslo"));
-        System.out.println("===> TEST 04: PASSED");
+        System.out.println("===> TEST 05: PASSED");
         System.out.println(" ");
     }
 
@@ -338,38 +381,30 @@ public class Brand2 {
         driver.get("https://dev.digisposa.com/retailer/19");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("my-icon-share")));
         driver.findElement(By.className("my-icon-share")).click();
-
         //share
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__BVID__19___BV_modal_body_\"]/div/div[1]/div/div/div")));
-        driver.findElement(By.xpath("//*[@id=\"__BVID__19___BV_modal_body_\"]/div/div[1]/div/div/div")).click();
-
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("modal-round")));
+        driver.findElement(By.className("modal-round")).click();
         //choose user
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__BVID__19___BV_modal_body_\"]/div/div[1]/div/div/div[1]/div")));
-        driver.findElement(By.xpath("//*[@id=\"__BVID__19___BV_modal_body_\"]/div/div[1]/div/div/div[1]/div")).click();
-
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("media-body")));
+        driver.findElement(By.className("media-body")).click();
         //send
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__BVID__19___BV_modal_body_\"]/div/div[3]/div/div[1]/button")));
         driver.findElement(By.xpath("//*[@id=\"__BVID__19___BV_modal_body_\"]/div/div[3]/div/div[1]/button")).click();
         Thread.sleep(3000);
-
         //check in messages
         driver.get("https://dev.digisposa.com/message-center");
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[1]/ul/li[2]/a")));
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[1]/ul/li[2]/a")).click();
-
         //choose user
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[2]/div[1]/div/h5")));
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[1]/div[2]/div[1]/div/h5")).click();
-
         //choose message
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("mc-message-text")));
         String retailer = driver.findElement(By.className("mc-message-text")).getText();
         Assert.assertEquals(retailer, "http://dev.digisposa.com/retailer/19");
-
         //delete chat
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("mc-delete-chat")));
         driver.findElement(By.className("mc-delete-chat")).click();
-
         //confirm
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"swal2-title\"]")));
         String text = driver.findElement(By.xpath("//*[@id=\"swal2-title\"]")).getText();
@@ -377,7 +412,6 @@ public class Brand2 {
 
         driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
         Thread.sleep(5000);
-
         //check if deleted
         String empty_title = driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div/div/div/div[2]/div/div[2]/div[1]/div[1]/div/span")).getText();
         Assert.assertEquals(empty_title, "Start you messaging");
@@ -458,7 +492,7 @@ public class Brand2 {
     public void Test15_search_order_in_invoices() {
         WebDriverWait wait = new WebDriverWait(driver, 60);
 
-        System.out.println("===> TEST 15: SEARCH ORDER IN INVOICES");
+        System.out.println("===> TEST 14: SEARCH ORDER IN INVOICES");
 
         driver.get("https://dev.digisposa.com/finances");
 
@@ -506,11 +540,13 @@ public class Brand2 {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
+        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form")).click();
 
         String loginText = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
 
         System.out.println("===> TEST 16: PASSED");
@@ -524,6 +560,7 @@ public class Brand2 {
         System.out.println("===> TEST 17: ADD RETAILER AND DELETE HIM");
 
         //login
+        driver.get("https://dev.digisposa.com/auth/login");
         driver.findElement(By.id("loginform-email")).sendKeys("loon_7@mailinator.com");
         driver.findElement(By.id("loginform-password")).sendKeys("12345678");
         WebElement element = driver.findElement(By.name("login-button"));
@@ -567,11 +604,13 @@ public class Brand2 {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
 
         String loginText = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         //login as retailer
         driver.findElement(By.id("loginform-email")).sendKeys("loon_4@mailinator.com");
@@ -606,11 +645,13 @@ public class Brand2 {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
 
         String loginText2 = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText2.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
 
         //login as brand
@@ -650,11 +691,13 @@ public class Brand2 {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
 
         String loginText3 = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText3.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         System.out.println("===> TEST 17: PASSED");
         System.out.println(" ");
@@ -706,11 +749,13 @@ public class Brand2 {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
 
         String loginText = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         //login as retailer
         driver.get("https://dev.digisposa.com/auth/login");
@@ -760,11 +805,13 @@ public class Brand2 {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
 
         driver.findElement(By.id("profile-dropdown")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
         driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
 
         String loginText2 = driver.findElement(By.className("section__title")).getText();
         Assert.assertTrue(loginText2.toLowerCase().contains("login"));
         driver.manage().window().maximize();
+        driver.navigate().refresh();
 
         System.out.println("===> TEST 18: PASSED");
         System.out.println(" ");
