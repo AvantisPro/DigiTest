@@ -659,7 +659,6 @@ public class Buy_flow {
 
         //Login as Brand "Rock"
         driver.get("https://dev.digisposa.com/auth/login");
-        driver.navigate().refresh();
         driver.findElement(By.name("LoginForm[email]")).sendKeys("loon_vader@mailinator.com");
         driver.findElement(By.name("LoginForm[password]")).sendKeys("12345678");
         WebElement element1 = driver.findElement(By.name("login-button"));
