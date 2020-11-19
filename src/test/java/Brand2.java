@@ -21,6 +21,9 @@ public class Brand2 {
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             .build();
 
+    //logout script
+    final String logout = "$('[action=\"/auth/logout\"]').submit();";
+
     @BeforeClass
     public void Init() throws IOException {
         service.start();
@@ -534,19 +537,10 @@ public class Brand2 {
         driver.navigate().refresh();
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form")).click();
-
-        String loginText = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
 
         System.out.println("===> TEST 16: PASSED");
@@ -598,19 +592,10 @@ public class Brand2 {
         Assert.assertEquals(retailer, "IGLOO USA, TAMPA");
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         //login as retailer
         driver.findElement(By.id("loginform-email")).sendKeys("loon_4@mailinator.com");
@@ -639,19 +624,10 @@ public class Brand2 {
         driver.get("https://dev.digisposa.com/brand/18/collection/72");
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText2 = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText2.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
 
         //login as brand
@@ -685,19 +661,10 @@ public class Brand2 {
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button"));
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText3 = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText3.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         System.out.println("===> TEST 17: PASSED");
         System.out.println(" ");
@@ -743,19 +710,10 @@ public class Brand2 {
         Assert.assertEquals(retailers_name, "IGLOO USA, TAMPA");
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         //login as retailer
         driver.get("https://dev.digisposa.com/auth/login");
@@ -799,19 +757,10 @@ public class Brand2 {
         driver.findElement(By.xpath("//*[@id=\"wrapper\"]/div[3]/div/div/div[2]/div[1]/div[1]/div/div/div/div[1]/button"));
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText2 = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText2.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         System.out.println("===> TEST 18: PASSED");
         System.out.println(" ");

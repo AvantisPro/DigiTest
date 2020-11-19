@@ -20,6 +20,9 @@ public class Admin_panel2 {
     ChromeDriverService service = new ChromeDriverService.Builder().usingPort(8082).
             usingDriverExecutable(new File("/usr/bin/chromedriver"))
             .build();
+
+    //logout script
+    final String logout = "$('[action=\"/auth/logout\"]').submit();";
     
 
     @BeforeClass
@@ -236,7 +239,7 @@ public class Admin_panel2 {
     }
 
     @Test
-    public void Test06_delete_brand_from_platform()  {
+    public void Test06_delete_brand_from_platform() throws InterruptedException {
 
         System.out.println("===> TEST 06: DELETE BRAND FROM PLATFORM");
         WebDriverWait wait = new WebDriverWait(driver, 60);
@@ -255,19 +258,10 @@ public class Admin_panel2 {
         driver.findElement(By.xpath("/html/body/div[4]/div/div[3]/button[1]")).click();
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         System.out.println("===> TEST 06: PASSED");
         System.out.println(" ");
@@ -312,19 +306,10 @@ public class Admin_panel2 {
         Assert.assertEquals(ticket_text, "Hi, it's autotests" + " : " + int_random);
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         //login as adm
         driver.get("https://dev.digisposa.com/auth/login");
@@ -351,19 +336,10 @@ public class Admin_panel2 {
         driver.findElement(By.className("fa-telegram-plane")).click();
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText2 = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText2.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         //login as brand
         driver.get("https://dev.digisposa.com/auth/login");
@@ -396,19 +372,10 @@ public class Admin_panel2 {
         Assert.assertEquals(ticket_closed, "TICKET RESOLVED");
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText3 = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText3.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         System.out.println("===> TEST 07: PASSED");
         System.out.println(" ");
@@ -453,19 +420,10 @@ public class Admin_panel2 {
         Assert.assertEquals(ticket_text, "Hi, it's autotests" + " : " + int_random);
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         //login as adm
         driver.get("https://dev.digisposa.com/auth/login");
@@ -492,19 +450,10 @@ public class Admin_panel2 {
         driver.findElement(By.className("fa-telegram-plane")).click();
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText2 = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText2.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         //login as brand
         driver.get("https://dev.digisposa.com/auth/login");
@@ -537,19 +486,10 @@ public class Admin_panel2 {
         Assert.assertEquals(ticket_closed, "TICKET RESOLVED");
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText3 = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText3.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         System.out.println("===> TEST 08: PASSED");
         System.out.println(" ");
@@ -593,19 +533,10 @@ public class Admin_panel2 {
         Assert.assertEquals(ticket_text, "Hi, it's autotests" + " : " + int_random);
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         //login as adm
         driver.get("https://dev.digisposa.com/auth/login");
@@ -639,19 +570,10 @@ public class Admin_panel2 {
         Assert.assertEquals(confirm, "TICKET RESOLVED");
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText2 = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText2.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         System.out.println("===> TEST 09: PASSED");
         System.out.println(" ");
@@ -702,19 +624,10 @@ public class Admin_panel2 {
         Assert.assertEquals(title, "Autotest");
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         //login as admin
 
@@ -742,19 +655,10 @@ public class Admin_panel2 {
         Assert.assertEquals(confirmed, "CONFIRMED");
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText2 = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText2.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         //login as brand
         driver.get("https://dev.digisposa.com/auth/login");
@@ -783,26 +687,17 @@ public class Admin_panel2 {
         Assert.assertEquals(title_text, "AUTOTEST");
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText3 = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText3.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         System.out.println("===> TEST 10: PASSED");
         System.out.println(" ");
     }
 
     @Test
-    public void Test11_hide_post_as_admin() {
+    public void Test11_hide_post_as_admin() throws InterruptedException {
 
         System.out.println("===> TEST 11: HIDE POST AS ADMIN");
 
@@ -831,19 +726,10 @@ public class Admin_panel2 {
         driver.findElement(By.className("fa-eye")).click();
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         //login as brand
         driver.get("https://dev.digisposa.com/auth/login");
@@ -864,19 +750,10 @@ public class Admin_panel2 {
         driver.findElement(By.className("fa-eye"));
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText2 = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText2.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         System.out.println("===> TEST 11: PASSED");
         System.out.println(" ");
@@ -921,19 +798,10 @@ public class Admin_panel2 {
         Assert.assertEquals(no_post, "No posts");
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
         //login as brand
         driver.get("https://dev.digisposa.com/auth/login");
@@ -954,19 +822,10 @@ public class Admin_panel2 {
         Assert.assertEquals(post_check, "No items");
 
         //logout
-        driver.manage().window().setPosition(new Point(0, 0));
-        driver.manage().window().setSize(new Dimension(414, 736));
-        driver.navigate().refresh();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("profile-dropdown")));
-
-        driver.findElement(By.id("profile-dropdown")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")));
-        driver.findElement(By.xpath("//*[@id=\"profile-dropdown-menu\"]/div[3]/form/button")).click();
-
-        String loginText2 = driver.findElement(By.className("section__title")).getText();
-        Assert.assertTrue(loginText2.toLowerCase().contains("login"));
-        driver.manage().window().maximize();
-        driver.navigate().refresh();
+        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
+        ((JavascriptExecutor)driver).executeScript(logout);
+        Thread.sleep(5000);
 
 
         System.out.println("===> TEST 12: PASSED");
