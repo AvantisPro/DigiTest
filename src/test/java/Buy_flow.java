@@ -109,6 +109,7 @@ public class Buy_flow {
 
         //logout
         driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
         ((JavascriptExecutor)driver).executeScript(logout);
         Thread.sleep(5000);
 
@@ -173,6 +174,7 @@ public class Buy_flow {
 
         //logout
         driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
         ((JavascriptExecutor)driver).executeScript(logout);
         Thread.sleep(5000);
 
@@ -221,6 +223,7 @@ public class Buy_flow {
 
         //logout
         driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
         ((JavascriptExecutor)driver).executeScript(logout);
         Thread.sleep(5000);
 
@@ -300,6 +303,7 @@ public class Buy_flow {
 
         //logout
         driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
         ((JavascriptExecutor)driver).executeScript(logout);
         Thread.sleep(5000);
 
@@ -349,6 +353,7 @@ public class Buy_flow {
 
         //logout
         driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
         ((JavascriptExecutor)driver).executeScript(logout);
         Thread.sleep(5000);
 
@@ -425,6 +430,7 @@ public class Buy_flow {
 
         //logout
         driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
         ((JavascriptExecutor)driver).executeScript(logout);
 
         //Login as Brand "Rock"
@@ -483,6 +489,7 @@ public class Buy_flow {
 
         //logout
         driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
         ((JavascriptExecutor)driver).executeScript(logout);
 
         System.out.println("===> TEST 06: PASSED");
@@ -558,7 +565,7 @@ public class Buy_flow {
         driver.navigate().refresh();
 
         //logout
-        driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
         ((JavascriptExecutor)driver).executeScript(logout);
         Thread.sleep(5000);
 
@@ -618,6 +625,7 @@ public class Buy_flow {
 
         //logout
         driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
         ((JavascriptExecutor)driver).executeScript(logout);
         Thread.sleep(5000);
 
@@ -678,6 +686,7 @@ public class Buy_flow {
 
         //logout
         driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
         ((JavascriptExecutor)driver).executeScript(logout);
         Thread.sleep(5000);
 
@@ -703,6 +712,7 @@ public class Buy_flow {
 
         //logout
         driver.get("https://dev.digisposa.com/dashboard");
+        Thread.sleep(2000);
         ((JavascriptExecutor)driver).executeScript(logout);
         Thread.sleep(5000);
 
